@@ -3,10 +3,10 @@ const router = require("./router.js");
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 
-// const db = require('../config/key').mongoURI;
-// mongoose.connect(db)
-//     .then(() => console.log("Connected to MongoDB successfully"))
-//     .catch(err => console.log(err));
+const db = require('../config/key').mongoURI;
+mongoose.connect(db)
+    .then(() => console.log("Connected to MongoDB successfully"))
+    .catch(err => console.log(err));
 
 
 const app = express();

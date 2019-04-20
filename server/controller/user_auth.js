@@ -10,7 +10,7 @@ router.post("/signup", (req, res) => {
     });
     newUser.save()
     .then(user => {
-        res.json({user});
+        res.json(user);
     })
     .catch(e => {
         res.status(400).json({ message: "server issue" });
@@ -18,14 +18,14 @@ router.post("/signup", (req, res) => {
 });
 
 
-router.get("/login", (req, res) => {
+router.post("/login", (req, res) => {
     const { email, password } = req.body;
     User.findOne({ email })
     .then(user => {
         if (!user || user.password !== password) {
             res.status(400).json({ message: "invalid email/password!"})
         } else {
-            res.json(user.collection)
+            res.json(user)
         }
     })
 });
