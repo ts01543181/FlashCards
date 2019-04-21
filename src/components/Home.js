@@ -43,8 +43,8 @@ class Home extends Component {
 
     render() {
         return (
-            <Container>
-                <h1>SalesCard</h1>
+            <div className="general-container">
+                <h1>View your collections</h1>
                 <Button onClick={this.toggleModal}>Add collection</Button>
                 <Modal open={this.state.open} closeOnDimmerClick={false}>
                     <Modal.Header>Create a new collection</Modal.Header>
@@ -68,7 +68,7 @@ class Home extends Component {
                         this.props.collection.map(col => {
                             return (
                             <div className="collection-item">
-                                <h3><Link to={`/card/${col.title}`}>{col.title}</Link></h3>
+                                <h3><Link to={`/collection/${col.title}`}>{col.title}</Link></h3>
                                 <span>{col.description}</span>
                                 <hr className="collection-item-hr"/>
                             </div>
@@ -77,7 +77,7 @@ class Home extends Component {
                     }
                 </div>
                 
-            </Container>
+            </div>
         )
     }
 }

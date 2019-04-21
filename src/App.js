@@ -2,7 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import HomeContainer from "./components/HomeContainer";
-import CardContainer from "./components/CardContainer";
+import CollectionContainer from "./components/CollectionContainer";
 import Nav from "./components/Nav";
 
 const App = ({store}) => {
@@ -12,7 +12,7 @@ const App = ({store}) => {
                 <Nav />
                 <Switch>
                     <Route exact path="/home" component={HomeContainer}/>
-                    <Route exact path="/card/:collection" component={CardContainer}/>
+                    <Route exact path="/collection/:collection" component={CollectionContainer}/>
                 </Switch>
             </BrowserRouter>
         </Provider>

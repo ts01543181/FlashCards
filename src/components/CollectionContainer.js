@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Card from "./Card";
+import Collection from "./Collection";
 import { addCard, editCard, deleteCard } from "../redux/actions/card_api";
 import { withRouter } from "react-router-dom";
 
@@ -13,6 +13,6 @@ const mapStateToProps = state => ({
     collection: state.collection
 });
 
-const CardContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Card));
+const CollectionContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Collection));
 
-export default CardContainer;
+export default CollectionContainer;
