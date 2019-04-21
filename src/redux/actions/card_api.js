@@ -8,17 +8,17 @@ export const addCard = (card) => dispatch => {
 };
 
 export const editCard = (card, id) => dispatch => {
-    console.log(card, id)
     dispatch({
         type: EDIT_CARD,
         payload: {card, id}
     });
+    return Promise.resolve();
 };
 
-export const deleteCard = (card) => dispatch => {
+export const deleteCard = (card, id) => dispatch => {
     dispatch({
         type: DELETE_CARD,
-        payload: card
+        payload: {card, id}
     });
 };
 

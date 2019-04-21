@@ -20,6 +20,7 @@ class Collection extends Component {
         this.addCard = this.addCard.bind(this);
         this.setFeatureCard = this.setFeatureCard.bind(this);
         this.editCard = this.editCard.bind(this);
+        this.deleteCard = this.deleteCard.bind(this);
     }
 
     componentWillMount() {
@@ -47,18 +48,21 @@ class Collection extends Component {
     }
 
     addCard() {
-        this.props.addCard({
+        const newCard = {
             term: this.state.newTerm,
             definition: this.state.newDefinition,
             comment: this.state.newComment,
             collection:this.state.currentCollection.title
-        })
+        };
+        this.props.addCard(newCard);
         this.setState({
             newTerm: "",
             newDefinition: "",
             newComment: ""
+        }, () => {
+            this.toggleModal();
+            this.setFeatureCard(newCard, this.state.currentCollection.cards.length-1);
         });
-        this.toggleModal();
     }
 
     setFeatureCard(card, id) {
@@ -69,10 +73,26 @@ class Collection extends Component {
     }
 
     editCard(card, id) {
-        this.props.editCard(card, id);
-        this.setState({
-            featureCard:card
+        return this.props.editCard(card, id)
+        .then(() => {
+            this.setState({
+                featureCard:card
+            });
         })
+    }
+
+    deleteCard(card, id) {
+        this.props.deleteCard(card, id);
+        if (this.state.currentCollection.cards[id] == undefined) {
+            this.setState({
+                featureCard: null,
+                featureCardId:null
+            });
+        } else {
+            this.setState({
+                featureCard: this.state.currentCollection.cards[id]
+            })
+        }
     }
     render() {
         return (
@@ -102,11 +122,18 @@ class Collection extends Component {
                             <input placeholer="definition" onChange={(e) => this.onChange(e, "newDefinition")}/>
                         </Form.Field>
                         <button className="button cancel-button" onClick={this.toggleModal}>Cancel</button>
-                        <button className="button" onClick={this.addCard}>Create</button>
+                        <button className="button" type="submit" onClick={this.addCard}>Create</button>
                     </Form>
                 </Modal>
+
                 {/* feature card section */}
-                <FeatureCard featureCard={this.state.featureCard} id={this.state.featureCardId} editCard={this.editCard}/>
+                <FeatureCard 
+                    featureCard={this.state.featureCard} 
+                    id={this.state.featureCardId} 
+                    editCard={this.editCard} 
+                    deleteCard={this.deleteCard}
+                />
+                
                 {/* carousel showing all cards in collection */}
                 <div className="generic-container">
                     <div className="carousel-container-inner">

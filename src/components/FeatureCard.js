@@ -1,16 +1,42 @@
 import React, { Component } from "react";
-import { Icon, Popup } from "semantic-ui-react";
-import $ from "jquery";
+import { Icon, Popup, Modal, Form } from "semantic-ui-react";
 
 class FeatureCard extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            toggle: false
+            toggle: false,
+            editModalOpen: false,
+            term: null,
+            definition: null,
+            comment: null
         }
+        
         this.toggleButtonsOn = this.toggleButtonsOn.bind(this);
         this.toggleButtonsOff = this.toggleButtonsOff.bind(this);
         this.editCard = this.editCard.bind(this);
+        this.deleteCard = this.deleteCard.bind(this);
+        this.toggleEditModal = this.toggleEditModal.bind(this);
+        this.onChange = this.onChange.bind(this);
+    }
+    
+    componentWillReceiveProps(newProps) {
+        if (!newProps.featureCard) return;
+        const { term, definition, comment } = newProps.featureCard;
+        if (newProps.featureCard) {
+            this.setState({
+                term,
+                definition,
+                comment
+            });
+        }
+    }
+
+    toggleEditModal() {
+        this.setState({
+            editModalOpen: !this.state.editModalOpen
+        });
     }
     toggleButtonsOn() {
         if (!this.props.featureCard) return;
@@ -26,19 +52,60 @@ class FeatureCard extends Component {
         })
     }
 
+    onChange(e, type) {
+        this.setState({
+            [type]: e.target.value
+        });
+    }
+
     editCard() {
         this.props.editCard({
-            term: "edited",
-            definition: this.props.featureCard.definition,
-            comment: "",
-            definition: this.props.featureCard.definition,
+            term: this.state.term,
+            definition: this.state.definition,
+            comment: this.state.comment,
             collection: this.props.featureCard.collection
-        }, this.props.id);
+        }, this.props.id)
+        .then(() => {
+            this.toggleEditModal();
+        })
 
     }
+
+    deleteCard() {
+        this.props.deleteCard(this.props.featureCard, this.props.id)
+    }
+
     render() {
+        console.log(this.state)
         return (
             <div className="generic-container">
+                {/* edit modal */}
+                <Modal open={this.state.editModalOpen} closeOnDimmerClick={false}>
+                    <Modal.Header>Edit Card</Modal.Header>
+                    <div className="flip-card-container">
+                        <div className="flip-card-inner">
+                            <div className="flip-card-front">
+                                <div>{this.state.term}</div>
+                            </div>
+                            <div className="flip-card-back">
+                                <div>{this.state.definition}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <Form>
+                        <Form.Field>
+                            <label>Term</label>
+                            <input placeholder="Term" value={this.state.term} onChange={(e) => this.onChange(e, "term")}/>
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Definition</label>
+                            <input placeholder="Definition" value={this.state.definition} onChange={(e) => this.onChange(e, "definition")}/>
+                        </Form.Field>
+                        <button className="button cancel-button" onClick={this.toggleEditModal}>Cancel</button>
+                        <button className="button" type="submit" onClick={this.editCard}>Confirm</button>
+                    </Form>
+                </Modal>
+                
                 <div className="feature-card-container"
                     onMouseEnter={this.toggleButtonsOn} 
                     onMouseLeave={this.toggleButtonsOff}
@@ -47,6 +114,8 @@ class FeatureCard extends Component {
                     this.props.featureCard ? 
                     this.props.featureCard.term : ""
                 }
+
+                {/* feature card buttons */}
                 {
                     this.props.featureCard && this.state.toggle ? 
                     <div className="feature-card-button">
@@ -55,12 +124,12 @@ class FeatureCard extends Component {
                             position="right center"
                             size="mini"
                         />
-                        <Popup trigger={<div className="feature-button" onClick={this.editCard}><Icon name="edit outline"/></div>}
+                        <Popup trigger={<div className="feature-button" onClick={this.toggleEditModal}><Icon name="edit outline"/></div>}
                             content="Edit"
                             position="right center"
                             size="mini"
                         />
-                        <Popup trigger={<div className="feature-button"><Icon name="trash alternate outline"/></div> }
+                        <Popup trigger={<div className="feature-button" onClick={this.deleteCard}><Icon name="trash alternate outline"/></div> }
                             content="Delete"
                             position="right center"
                             size="mini"

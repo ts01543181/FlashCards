@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 const mapDispatchToProps = dispatch => ({
     addCard: (card) => dispatch(addCard(card)),
     editCard: (card, id) => dispatch(editCard(card, id)),
-    deleteCard: (data) => dispatch(deleteCard(data)),
+    deleteCard: (card, id) => dispatch(deleteCard(card, id)),
 });
 
 const mapStateToProps = state => ({
