@@ -129,6 +129,7 @@ h1 {
 }
 
 .feature-card-container {
+  position: relative;
   height: 350px;
   background-color: white;
   width:60%;
@@ -138,18 +139,37 @@ h1 {
   padding: 40px;
   font-size: 1.9em;
   line-height: 1.5;
-  overflow-y: scroll;
+  border-radius: 4px;
+  /* overflow-y: scroll; */
 }
 
+.feature-card-button {
+  position:absolute;
+  top:30%;
+  right:3%;
+}
+
+.feature-button {
+  color: #bbb;
+}
+
+.feature-button:hover {
+  color: rgb(130, 129, 129);
+  cursor: pointer;
+}
 
 .carousel-container-inner {
   height: 7.5em;
   width: 70%;
   margin:0 auto;
   margin-top: 20px;
-  overflow-x:scroll;
+  overflow-x:hidden;
   overflow-y: hidden;
   white-space:nowrap;
+}
+
+.carousel-container-inner:hover {
+  overflow-x:scroll;
 }
 
 .carousel-item {
@@ -164,6 +184,7 @@ h1 {
   white-space: pre-line;
   overflow-y: hidden;
   padding: 5px;
+  border-radius: 4px;
 }
 
 .carousel-item:hover {

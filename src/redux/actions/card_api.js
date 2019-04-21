@@ -7,10 +7,11 @@ export const addCard = (card) => dispatch => {
     });
 };
 
-export const editCard = (card) => dispatch => {
+export const editCard = (card, id) => dispatch => {
+    console.log(card, id)
     dispatch({
         type: EDIT_CARD,
-        payload: card
+        payload: {card, id}
     });
 };
 

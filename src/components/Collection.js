@@ -12,19 +12,23 @@ class Collection extends Component {
             newDefinition: "",
             newComment: "",
             newCardOpen: false,
-            featureCard:null
+            featureCard:null,
+            featureCardId:null
         };
         this.toggleModal = this.toggleModal.bind(this);
         this.onChange = this.onChange.bind(this);
         this.addCard = this.addCard.bind(this);
         this.setFeatureCard = this.setFeatureCard.bind(this);
+        this.editCard = this.editCard.bind(this);
     }
 
     componentWillMount() {
         for (let col of this.props.collection) {
             if (col.title == this.props.match.params.collection) {
                 this.setState({
-                    currentCollection: col
+                    currentCollection: col,
+                    featureCard: col.cards[0],
+                    featureCardId: 0
                 });
                 break;
             }
@@ -57,10 +61,18 @@ class Collection extends Component {
         this.toggleModal();
     }
 
-    setFeatureCard(card) {
+    setFeatureCard(card, id) {
         this.setState({
-            featureCard: card
+            featureCard: card,
+            featureCardId: id
         });
+    }
+
+    editCard(card, id) {
+        this.props.editCard(card, id);
+        this.setState({
+            featureCard:card
+        })
     }
     render() {
         return (
@@ -94,14 +106,14 @@ class Collection extends Component {
                     </Form>
                 </Modal>
                 {/* feature card section */}
-                <FeatureCard featureCard={this.state.featureCard}/>
+                <FeatureCard featureCard={this.state.featureCard} id={this.state.featureCardId} editCard={this.editCard}/>
                 {/* carousel showing all cards in collection */}
                 <div className="generic-container">
                     <div className="carousel-container-inner">
                         {
-                            this.state.currentCollection.cards.map(card => {
+                            this.state.currentCollection.cards.map((card, id) => {
                                 return (
-                                    <CarouselCard card={card} setFeatureCard={this.setFeatureCard}/>
+                                    <CarouselCard card={card} setFeatureCard={this.setFeatureCard} id={id}/>
                                 )
                             })
                         }

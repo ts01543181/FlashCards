@@ -4,8 +4,8 @@ import { addCard, editCard, deleteCard } from "../redux/actions/card_api";
 import { withRouter } from "react-router-dom";
 
 const mapDispatchToProps = dispatch => ({
-    addCard: (data) => dispatch(addCard(data)),
-    editCard: (data) => dispatch(editCard(data)),
+    addCard: (card) => dispatch(addCard(card)),
+    editCard: (card, id) => dispatch(editCard(card, id)),
     deleteCard: (data) => dispatch(deleteCard(data)),
 });
 
