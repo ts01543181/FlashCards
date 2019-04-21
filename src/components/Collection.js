@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button, Form } from "semantic-ui-react";
+import CarouselCard from "./CarouselCard";
+import FeatureCard from "./FeatureCard";
 
 class Collection extends Component {
     constructor(props) {
@@ -9,11 +11,13 @@ class Collection extends Component {
             newTerm: "",
             newDefinition: "",
             newComment: "",
-            newCardOpen: false
+            newCardOpen: false,
+            featureCard:null
         };
         this.toggleModal = this.toggleModal.bind(this);
         this.onChange = this.onChange.bind(this);
         this.addCard = this.addCard.bind(this);
+        this.setFeatureCard = this.setFeatureCard.bind(this);
     }
 
     componentWillMount() {
@@ -52,11 +56,18 @@ class Collection extends Component {
         });
         this.toggleModal();
     }
+
+    setFeatureCard(card) {
+        this.setState({
+            featureCard: card
+        });
+    }
     render() {
         return (
             <div className="general-container">
                 <h1>{this.state.currentCollection.title}</h1>
-                <Button onClick={this.toggleModal}>+ New Card</Button>
+                <hr />
+                <div><button className="button create-button" onClick={this.toggleModal}>+ New Card</button></div>
                 <Modal open={this.state.newCardOpen} closeOnDimmerClick={false}>
                     <Modal.Header>Create a new card</Modal.Header>
                     <div className="flip-card-container">
@@ -78,18 +89,24 @@ class Collection extends Component {
                             <label>Definition</label>
                             <input placeholer="definition" onChange={(e) => this.onChange(e, "newDefinition")}/>
                         </Form.Field>
-                        <Button onClick={this.addCard}>Create</Button>
+                        <button className="button cancel-button" onClick={this.toggleModal}>Cancel</button>
+                        <button className="button" onClick={this.addCard}>Create</button>
                     </Form>
                 </Modal>
-
+                {/* feature card section */}
+                <FeatureCard featureCard={this.state.featureCard}/>
                 {/* carousel showing all cards in collection */}
-                {
-                    this.state.currentCollection.cards.map(card => {
-                        return (
-                            <div>{card.term}</div>
-                        )
-                    })
-                }
+                <div className="generic-container">
+                    <div className="carousel-container-inner">
+                        {
+                            this.state.currentCollection.cards.map(card => {
+                                return (
+                                    <CarouselCard card={card} setFeatureCard={this.setFeatureCard}/>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
             </div>
         )
     }

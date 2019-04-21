@@ -1,18 +1,36 @@
-/* body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* start generic */
+
+body {
+  background: #eee;
+}
+h1 {
+  font-weight: 100;
+}
+.button {
+  background-color:#215ca0;
+  border-radius: 4px;
+  height:40px;
+  width: 150px;
+  color: white;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} */
+.button:hover {
+  cursor: pointer;
+}
 
+.cancel-button {
+  background-color: #dd4b39;
+}
+
+.general-container {
+  width: 70%;
+  margin:0 auto;
+  margin-top: 4%;;
+}
+
+/* end generic */
+
+/* start nav */
 .nav-container {
   background-color: #009EDB;
   position: relative;
@@ -39,7 +57,7 @@ code {
   display:inline-block;
   list-style: none;
   font-size: 1.4em;
-  padding-right:30px;
+  padding-left:30px;
 }
 
 .nav-menu-container li a {
@@ -51,11 +69,10 @@ code {
   color:white;
 }
 
-.general-container {
-  width: 70%;
-  margin:0 auto;
-  margin-top: 4%;;
-}
+/* end nav */
+
+
+/* start collection */
 
 .collection-item {
   margin: 2%;
@@ -66,10 +83,16 @@ code {
   margin: 0 auto;
 }
 
+.create-button {
+  background-color: #278806;
+  float: right;
+}
+
 .flip-card-container {
   background-color: transparent;
   width: 300px;
   height: 200px;
+  margin: 0 auto;
   border: 1px solid #f1f1f1;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
@@ -94,15 +117,60 @@ code {
   backface-visibility: hidden;
 }
 
-/* Style the front side (fallback if image is missing) */
 .flip-card-front {
   background-color: #bbb;
   color: black;
 }
 
-/* Style the back side */
 .flip-card-back {
-  background-color: dodgerblue;
-  color: white;
+  background-color: #bbb;
+  color: black;
   transform: rotateY(180deg);
 }
+
+.feature-card-container {
+  height: 350px;
+  background-color: white;
+  width:60%;
+  margin: 0 auto;
+  margin-top: 100px;
+  text-align: center;
+  padding: 40px;
+  font-size: 1.9em;
+  line-height: 1.5;
+  overflow-y: scroll;
+}
+
+
+.carousel-container-inner {
+  height: 7.5em;
+  width: 70%;
+  margin:0 auto;
+  margin-top: 20px;
+  overflow-x:scroll;
+  overflow-y: hidden;
+  white-space:nowrap;
+}
+
+.carousel-item {
+  display:inline-block;
+  width:150px;
+  background-color: white;
+  height:85%;
+  text-align: center;
+  vertical-align:top;
+  margin:5px;
+  word-wrap: break-word;
+  white-space: pre-line;
+  overflow-y: hidden;
+  padding: 5px;
+}
+
+.carousel-item:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.3s;
+  background-color:#bbb
+}
+/* end collection */
+

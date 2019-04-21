@@ -45,7 +45,7 @@ class Home extends Component {
         return (
             <div className="general-container">
                 <h1>View your collections</h1>
-                <Button onClick={this.toggleModal}>Add collection</Button>
+                <button className="button create-button" onClick={this.toggleModal}>+ Add collection</button>
                 <Modal open={this.state.open} closeOnDimmerClick={false}>
                     <Modal.Header>Create a new collection</Modal.Header>
                     <Modal.Content>
@@ -58,8 +58,8 @@ class Home extends Component {
                                 <label>Description</label>
                                 <input placeholder="Description for your collection" onChange={(e) => this.onChange(e, "collectionDescription")}/>
                             </Form.Field>
-                            <Button onClick={this.toggleModal}>Cancel</Button>
-                            <Button onClick={this.addCollection}>Create</Button>
+                            <button className="button cancel-button" onClick={this.toggleModal}>Cancel</button>
+                            <button className="button" onClick={this.addCollection}>Create</button>
                         </Form>
                     </Modal.Content>
                 </Modal>
