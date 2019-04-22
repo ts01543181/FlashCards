@@ -131,10 +131,10 @@ class FeatureCard extends Component {
                     this.props.featureCard ? 
                     <div className="feature-card-inner">
                         <div className="feature-card-front">
-                            <div className="feature-card-text">{this.props.featureCard.term}</div>
+                            <div className="feature-card-text"><div>{this.props.featureCard.term}</div></div>
                         </div>
                         <div className="feature-card-back">
-                            <div className="feature-card-text">{this.props.featureCard.definition}</div>
+                            <div className="feature-card-text"><div>{this.props.featureCard.definition}</div></div>
                         </div>
                     </div>
                     : ""

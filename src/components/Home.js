@@ -8,7 +8,8 @@ class Home extends Component {
         this.state = {
             collectionName:"",
             collectionDescription: "",
-            open: false
+            open: false,
+            chars: 0
         };
         this.addCollection = this.addCollection.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -16,13 +17,29 @@ class Home extends Component {
     }
 
     onChange(e, type) {
+        const pre = this.state.collectionName;
         this.setState({
             [type]: e.target.value
-        });
+        }, () => {
+            if (type === "collectionName") {
+                if (this.state.collectionName.length > 120) {
+                    this.setState({
+                        [type]: pre
+                    });
+                } else {
+                    this.setState({
+                        chars: this.state.collectionName.length
+                    });
+                }
+            }
+        })
     }
 
 
     addCollection() {
+        if (!this.state.collectionName.length) {
+
+        }
         this.props.addCollection({
             title: this.state.collectionName,
             description: this.state.collectionDescription,
@@ -55,11 +72,11 @@ class Home extends Component {
                         <Form>
                             <Form.Field>
                                 <label>Title *required</label>
-                                <input placeholder="Name for your collection" onChange={(e) => this.onChange(e, "collectionName")}/>
+                                <input placeholder="Name for your collection" onChange={(e) => this.onChange(e, "collectionName")} value={this.state.collectionName}/>
                             </Form.Field>
                             <Form.Field>
                                 <label>Description</label>
-                                <input placeholder="Description for your collection" onChange={(e) => this.onChange(e, "collectionDescription")}/>
+                                <input placeholder="Description for your collection" onChange={(e) => this.onChange(e, "collectionDescription")} value={this.state.collectionDescription}/>
                             </Form.Field>
                             <button className="button create-button" onClick={this.addCollection}>Create</button>
                             <button className="button cancel-button" onClick={this.toggleModal}>Cancel</button>
@@ -72,10 +89,10 @@ class Home extends Component {
                         this.props.collection.length ?
                         this.props.collection.map(col => {
                             return (
-                            <div className="collection-item">
-                                <h2><Link to={`/collection/${col.title}`}>{col.title}</Link></h2>
-                                <span>{col.description}</span>
-                                <hr className="collection-item-hr"/>
+                            <div className="collection-item" onClick={() => this.props.history.push(`/collection/${col.title}`)}>
+                                <div>{col.title}</div>
+                                {/* <span>{col.description}</span> */}
+                                {/* <hr className="collection-item-hr"/> */}
                             </div>
                             )
                         }) :

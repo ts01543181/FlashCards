@@ -47,7 +47,10 @@ class Collection extends Component {
 
     toggleModal() {
         this.setState({
-            newCardOpen: !this.state.newCardOpen
+            newCardOpen: !this.state.newCardOpen,
+            newTerm: "",
+            newDefinition: "",
+            newComment: "",
         });
     }
 
