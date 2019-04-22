@@ -71,9 +71,25 @@ h1 {
 
 /* end nav */
 
+/* start home */
+
+.home-header h1{
+  display: inline-block;
+
+}
+
+.no-collection-text {
+  width:20%;
+  margin: 0 auto;
+}
+
+/* end home */
 
 /* start collection */
 
+.collection-header h1{
+  display:inline-block;
+}
 .collection-item {
   margin: 2%;
   margin-left: 0;
@@ -152,7 +168,10 @@ h1 {
   transition: transform 0.8s;
   transform-style: preserve-3d;
   font-family: 'Catamaran', sans-serif;
+}
 
+.feature-card-text {
+  margin-top: 30%;
 }
 
 .feature-card-inner.flipped {
@@ -203,7 +222,7 @@ h1 {
 }
 
 .carousel-container-inner:hover {
-  overflow-x:scroll;
+  overflow-x:auto;
 }
 
 .carousel-item {
@@ -227,6 +246,10 @@ h1 {
   transform: scale(1.1);
   transition: 0.3s;
   background-color:#bbb
+}
+
+.carousel-item-text {
+  margin-top:20%;
 }
 /* end collection */
 

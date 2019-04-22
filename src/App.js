@@ -13,6 +13,7 @@ const App = ({store}) => {
                 <Switch>
                     <Route exact path="/home" component={HomeContainer}/>
                     <Route exact path="/collection/:collection" component={CollectionContainer}/>
+                    <Redirect to="/home" />
                 </Switch>
             </BrowserRouter>
         </Provider>

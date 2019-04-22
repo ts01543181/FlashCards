@@ -8,7 +8,7 @@ class CarouselCard extends Component {
     render() {
         return (
             <div className="carousel-item" onClick={() => this.props.setFeatureCard(this.props.card, this.props.id)}>
-                {this.props.card.term}
+                <div className="carousel-item-text">{this.props.card.term}</div>
             </div>
         )
     }

@@ -106,9 +106,11 @@ class Collection extends Component {
     render() {
         return (
             <div className="general-container">
-                <h1>{this.state.currentCollection.title}</h1>
+                <div className="collection-header">
+                    <h1>{this.state.currentCollection.title}</h1>
+                    <button className="button create-button" onClick={this.toggleModal}>+ New Card</button>
+                </div>
                 <hr />
-                <div><button className="button create-button" onClick={this.toggleModal}>+ New Card</button></div>
                 <Modal open={this.state.newCardOpen} closeOnDimmerClick={false}>
                     <Modal.Header>Create a new card</Modal.Header>
                     <div className="flip-card-container">

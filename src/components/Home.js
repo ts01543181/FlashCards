@@ -44,8 +44,11 @@ class Home extends Component {
     render() {
         return (
             <div className="general-container">
-                <h1>View your collections</h1>
-                <button className="button create-button" onClick={this.toggleModal}>+ Add collection</button>
+                <div className="home-header">
+                    <h1>View your collections</h1>
+                    <button className="button create-button" onClick={this.toggleModal}>+ New Collection</button>
+                </div>
+                <hr />
                 <Modal open={this.state.open} closeOnDimmerClick={false}>
                     <Modal.Header>Create a new collection</Modal.Header>
                     <Modal.Content>
@@ -64,7 +67,9 @@ class Home extends Component {
                     </Modal.Content>
                 </Modal>
                 <div className="collection-container">
-                    {
+
+                    {   
+                        this.props.collection.length ?
                         this.props.collection.map(col => {
                             return (
                             <div className="collection-item">
@@ -73,7 +78,8 @@ class Home extends Component {
                                 <hr className="collection-item-hr"/>
                             </div>
                             )
-                        })
+                        }) :
+                        <div className="no-collection-text">You don't have any collection yet!</div>
                     }
                 </div>
                 
