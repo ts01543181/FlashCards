@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Icon, Popup, Modal, Form } from "semantic-ui-react";
+import $ from "jquery";
 
 class FeatureCard extends Component {
     constructor(props) {
@@ -20,8 +21,20 @@ class FeatureCard extends Component {
         this.toggleEditModal = this.toggleEditModal.bind(this);
         this.onChange = this.onChange.bind(this);
     }
-    
+
+    componentDidMount() {
+        // this is to prevent error when Collection component doesn't have any featureCard yet (when collection was first made)
+        if (!this.props.featureCard) {
+            return;
+        } 
+        const { term, definition, comment } = this.props.featureCard;
+        this.setState({
+            term, definition, comment
+        });
+    }
+
     componentWillReceiveProps(newProps) {
+        // this will update featureCard whenever there's an update been made (edit/delete)
         if (!newProps.featureCard) return;
         const { term, definition, comment } = newProps.featureCard;
         if (newProps.featureCard) {
@@ -31,6 +44,10 @@ class FeatureCard extends Component {
                 comment
             });
         }
+    }
+
+    toggleFlip() {
+        $(".feature-card-inner").toggleClass("flipped")
     }
 
     toggleEditModal() {
@@ -76,9 +93,8 @@ class FeatureCard extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
-            <div className="generic-container">
+            <div className="feature-card-outer">
                 {/* edit modal */}
                 <Modal open={this.state.editModalOpen} closeOnDimmerClick={false}>
                     <Modal.Header>Edit Card</Modal.Header>
@@ -112,14 +128,20 @@ class FeatureCard extends Component {
                 >
                 {
                     this.props.featureCard ? 
-                    this.props.featureCard.term : ""
+                    <div className="feature-card-inner">
+                        {/* <div className="feature-card-innermost"> */}
+                            <div className="feature-card-front">{this.props.featureCard.term}</div>
+                            <div className="feature-card-back">{this.props.featureCard.definition}</div>
+                        {/* </div> */}
+                    </div>
+                    : ""
                 }
 
                 {/* feature card buttons */}
                 {
                     this.props.featureCard && this.state.toggle ? 
                     <div className="feature-card-button">
-                        <Popup trigger={<div className="feature-button"><Icon name="exchange"/></div>}
+                        <Popup trigger={<div className="feature-button" onClick={this.toggleFlip}><Icon name="exchange"/></div>}
                             content="Flip"
                             position="right center"
                             size="mini"

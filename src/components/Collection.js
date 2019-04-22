@@ -30,11 +30,12 @@ class Collection extends Component {
                     currentCollection: col,
                     featureCard: col.cards[0],
                     featureCardId: 0
-                });
+                })
                 break;
             }
         }
     }
+
     onChange(e, type) {
         this.setState({
             [type]: e.target.value
@@ -83,14 +84,22 @@ class Collection extends Component {
 
     deleteCard(card, id) {
         this.props.deleteCard(card, id);
-        if (this.state.currentCollection.cards[id] == undefined) {
-            this.setState({
-                featureCard: null,
-                featureCardId:null
-            });
+        const cards = this.state.currentCollection.cards;
+        if (cards[id] == undefined) {
+            if (cards.length >= 1) {
+                this.setState({
+                    featureCard: cards[cards.length-1],
+                    featureCardId:cards.length-1
+                });
+            } else {
+                this.setState({
+                    featureCard: null,
+                    featureCardId:null
+                });
+            }
         } else {
             this.setState({
-                featureCard: this.state.currentCollection.cards[id]
+                featureCard: cards[id]
             })
         }
     }
@@ -127,12 +136,16 @@ class Collection extends Component {
                 </Modal>
 
                 {/* feature card section */}
-                <FeatureCard 
-                    featureCard={this.state.featureCard} 
-                    id={this.state.featureCardId} 
-                    editCard={this.editCard} 
-                    deleteCard={this.deleteCard}
-                />
+                {
+                    this.state.featureCard ? 
+                    <FeatureCard 
+                        featureCard={this.state.featureCard} 
+                        id={this.state.featureCardId} 
+                        editCard={this.editCard} 
+                        deleteCard={this.deleteCard}
+                    /> :
+                    <div className="empty-collection-container">You don't have any cards yet!</div>
+                }
                 
                 {/* carousel showing all cards in collection */}
                 <div className="generic-container">

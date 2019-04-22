@@ -68,7 +68,7 @@ class Home extends Component {
                         this.props.collection.map(col => {
                             return (
                             <div className="collection-item">
-                                <h3><Link to={`/collection/${col.title}`}>{col.title}</Link></h3>
+                                <h2><Link to={`/collection/${col.title}`}>{col.title}</Link></h2>
                                 <span>{col.description}</span>
                                 <hr className="collection-item-hr"/>
                             </div>

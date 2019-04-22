@@ -81,6 +81,7 @@ h1 {
 .collection-item-hr {
   width: 20%;
   margin: 0 auto;
+  margin-top: 15px;
 }
 
 .create-button {
@@ -131,16 +132,49 @@ h1 {
 .feature-card-container {
   position: relative;
   height: 350px;
-  background-color: white;
+  background-color: transparent;
   width:60%;
   margin: 0 auto;
   margin-top: 100px;
   text-align: center;
-  padding: 40px;
+  /* padding: 40px; */
   font-size: 1.9em;
   line-height: 1.5;
   border-radius: 4px;
-  /* overflow-y: scroll; */
+  perspective: 1000px;
+}
+
+.feature-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  font-family: 'Catamaran', sans-serif;
+
+}
+
+.feature-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.feature-card-front, .feature-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.feature-card-front {
+  background-color: white;
+  color: black;
+}
+
+.feature-card-back {
+  background-color: white;
+  color: black;
+  transform: rotateY(180deg);
 }
 
 .feature-card-button {
@@ -185,6 +219,7 @@ h1 {
   overflow-y: hidden;
   padding: 5px;
   border-radius: 4px;
+
 }
 
 .carousel-item:hover {
