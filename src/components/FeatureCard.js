@@ -47,7 +47,8 @@ class FeatureCard extends Component {
     }
 
     toggleFlip() {
-        $(".feature-card-inner").toggleClass("flipped")
+        $(".feature-card-inner").toggleClass("flipped");
+        $(".flip-card-inner").toggleClass("flipped");
     }
 
     toggleEditModal() {
@@ -99,12 +100,12 @@ class FeatureCard extends Component {
                 <Modal open={this.state.editModalOpen} closeOnDimmerClick={false}>
                     <Modal.Header>Edit Card</Modal.Header>
                     <div className="flip-card-container">
-                        <div className="flip-card-inner">
+                        <div className="flip-card-inner" onClick={this.toggleFlip}>
                             <div className="flip-card-front">
-                                <div>{this.state.term}</div>
+                                <div className="flip-card-text">{this.state.term}</div>
                             </div>
                             <div className="flip-card-back">
-                                <div>{this.state.definition}</div>
+                                <div className="flip-card-text">{this.state.definition}</div>
                             </div>
                         </div>
                     </div>
@@ -117,8 +118,8 @@ class FeatureCard extends Component {
                             <label>Definition</label>
                             <input placeholder="Definition" value={this.state.definition} onChange={(e) => this.onChange(e, "definition")}/>
                         </Form.Field>
+                        <button className="button create-button" onClick={this.editCard}>Confirm</button>
                         <button className="button cancel-button" onClick={this.toggleEditModal}>Cancel</button>
-                        <button className="button" type="submit" onClick={this.editCard}>Confirm</button>
                     </Form>
                 </Modal>
                 
@@ -129,8 +130,12 @@ class FeatureCard extends Component {
                 {
                     this.props.featureCard ? 
                     <div className="feature-card-inner">
-                        <div className="feature-card-front"><div className="feature-card-text">{this.props.featureCard.term}</div></div>
-                        <div className="feature-card-back"><div className="feature-card-text">{this.props.featureCard.definition}</div></div>
+                        <div className="feature-card-front">
+                            <div className="feature-card-text">{this.props.featureCard.term}</div>
+                        </div>
+                        <div className="feature-card-back">
+                            <div className="feature-card-text">{this.props.featureCard.definition}</div>
+                        </div>
                     </div>
                     : ""
                 }

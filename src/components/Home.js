@@ -61,8 +61,8 @@ class Home extends Component {
                                 <label>Description</label>
                                 <input placeholder="Description for your collection" onChange={(e) => this.onChange(e, "collectionDescription")}/>
                             </Form.Field>
+                            <button className="button create-button" onClick={this.addCollection}>Create</button>
                             <button className="button cancel-button" onClick={this.toggleModal}>Cancel</button>
-                            <button className="button" onClick={this.addCollection}>Create</button>
                         </Form>
                     </Modal.Content>
                 </Modal>

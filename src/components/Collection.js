@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Modal, Button, Form } from "semantic-ui-react";
+import { Modal, Button, Form, Icon } from "semantic-ui-react";
 import CarouselCard from "./CarouselCard";
 import FeatureCard from "./FeatureCard";
+import $ from "jquery";
 
 class Collection extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class Collection extends Component {
             newComment: "",
             newCardOpen: false,
             featureCard:null,
-            featureCardId:null
+            featureCardId:null,
         };
         this.toggleModal = this.toggleModal.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -21,6 +22,8 @@ class Collection extends Component {
         this.setFeatureCard = this.setFeatureCard.bind(this);
         this.editCard = this.editCard.bind(this);
         this.deleteCard = this.deleteCard.bind(this);
+        this.toggleFlip = this.toggleFlip.bind(this);
+        this.switchFeatureCard = this.switchFeatureCard.bind(this);
     }
 
     componentWillMount() {
@@ -69,7 +72,7 @@ class Collection extends Component {
     setFeatureCard(card, id) {
         this.setState({
             featureCard: card,
-            featureCardId: id
+            featureCardId: id,
         });
     }
 
@@ -103,6 +106,24 @@ class Collection extends Component {
             })
         }
     }
+
+    toggleFlip() {
+        $(".flip-card-inner").toggleClass("flipped");
+    }
+
+    switchFeatureCard(prev) {
+        if (prev) {
+            this.setState({
+                featureCard: this.state.currentCollection.cards[this.state.featureCardId-1],
+                featureCardId: this.state.featureCardId-1
+            })
+        } else {
+            this.setState({
+                featureCard: this.state.currentCollection.cards[this.state.featureCardId+1],
+                featureCardId: this.state.featureCardId+1
+            })
+        }
+    }
     render() {
         return (
             <div className="general-container">
@@ -114,12 +135,12 @@ class Collection extends Component {
                 <Modal open={this.state.newCardOpen} closeOnDimmerClick={false}>
                     <Modal.Header>Create a new card</Modal.Header>
                     <div className="flip-card-container">
-                        <div className="flip-card-inner">
+                        <div className="flip-card-inner" onClick={this.toggleFlip}>
                             <div className="flip-card-front">
-                                <div>{this.state.newTerm}</div>
+                                <div className="flip-card-text">{this.state.newTerm}</div>
                             </div>
                             <div className="flip-card-back">
-                                <div>{this.state.newDefinition}</div>
+                                <div className="flip-card-text">{this.state.newDefinition}</div>
                             </div>
                         </div>
                     </div>
@@ -132,12 +153,22 @@ class Collection extends Component {
                             <label>Definition</label>
                             <input placeholer="definition" onChange={(e) => this.onChange(e, "newDefinition")}/>
                         </Form.Field>
+                        <button className="button create-button" onClick={this.addCard}>Create</button>
                         <button className="button cancel-button" onClick={this.toggleModal}>Cancel</button>
-                        <button className="button" type="submit" onClick={this.addCard}>Create</button>
                     </Form>
                 </Modal>
 
                 {/* feature card section */}
+                {
+                    this.state.featureCardId >= 1 ? 
+                    <Icon size="huge" color="blue" name="angle double left" className="prev-arrow" onClick={() => this.switchFeatureCard(true)}/> : 
+                    <Icon size="huge" name="angle double left" className="prev-arrow invalid" />
+                }
+                {
+                    this.state.featureCardId >= 0 && this.state.featureCardId < this.state.currentCollection.cards.length-1 ?
+                    <Icon size="huge" color="blue" name="angle double right" className="next-arrow" onClick={() => this.switchFeatureCard(false)}/> : 
+                    <Icon size="huge" name="angle double right" className="next-arrow invalid" />
+                }
                 {
                     this.state.featureCard ? 
                     <FeatureCard 
@@ -155,7 +186,7 @@ class Collection extends Component {
                         {
                             this.state.currentCollection.cards.map((card, id) => {
                                 return (
-                                    <CarouselCard card={card} setFeatureCard={this.setFeatureCard} id={id}/>
+                                    <CarouselCard card={card} setFeatureCard={this.setFeatureCard} id={id} featured={id === this.state.featureCardId}/>
                                 )
                             })
                         }
