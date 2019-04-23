@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import HomeContainer from "./components/HomeContainer";
 import CollectionContainer from "./components/CollectionContainer";
+import ReviewContainer from "./components/ReviewContainer";
 import Nav from "./components/Nav";
 
 const App = ({store}) => {
@@ -13,6 +14,7 @@ const App = ({store}) => {
                 <Switch>
                     <Route exact path="/home" component={HomeContainer}/>
                     <Route exact path="/collection/:collection" component={CollectionContainer}/>
+                    <Route exact path="/review" component={ReviewContainer}/>
                     <Redirect to="/home" />
                 </Switch>
             </BrowserRouter>

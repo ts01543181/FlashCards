@@ -13,6 +13,7 @@ class Collection extends Component {
             newDefinition: "",
             newComment: "",
             newCardOpen: false,
+            newCardReview:false,
             featureCard:null,
             featureCardId:null,
         };
@@ -24,6 +25,8 @@ class Collection extends Component {
         this.deleteCard = this.deleteCard.bind(this);
         this.toggleFlip = this.toggleFlip.bind(this);
         this.switchFeatureCard = this.switchFeatureCard.bind(this);
+        this.addReview = this.addReview.bind(this);
+        this.deleteReview = this.deleteReview.bind(this);
     }
 
     componentWillMount() {
@@ -63,6 +66,7 @@ class Collection extends Component {
             term: this.state.newTerm,
             definition: this.state.newDefinition,
             comment: this.state.newComment,
+            review: false,
             collection:this.state.currentCollection.title
         };
         this.props.addCard(newCard);
@@ -116,6 +120,29 @@ class Collection extends Component {
         }
     }
 
+    addReview(card, id) {
+        this.props.editCard(card, id)
+        .then(() => {
+            return this.props.addReview(card, id)
+        })
+        .then(()=> {
+            this.setState({
+                featureCard: card
+            });
+        })
+    }
+
+    deleteReview(card, id) {
+        this.props.editCard(card, id)
+        .then(() => {
+            return this.props.deleteReview(card, id);
+        })
+        .then(() => {
+            this.setState({
+                featureCard: card
+            });
+        })
+    }
     toggleFlip() {
         $(".flip-card-inner").toggleClass("flipped");
     }
@@ -192,6 +219,8 @@ class Collection extends Component {
                         id={this.state.featureCardId} 
                         editCard={this.editCard} 
                         deleteCard={this.deleteCard}
+                        addReview={this.addReview}
+                        deleteReview={this.deleteReview}
                     /> :
                     // <div className="empty-collection-container">You don't have any cards yet!</div>
                     <div className="feature-card-container" style={{background: "white"}}></div>
@@ -203,7 +232,12 @@ class Collection extends Component {
                         {
                             this.state.currentCollection.cards.map((card, id) => {
                                 return (
-                                    <CarouselCard card={card} setFeatureCard={this.setFeatureCard} id={id} featured={id === this.state.featureCardId}/>
+                                    <CarouselCard 
+                                        card={card} 
+                                        setFeatureCard={this.setFeatureCard} 
+                                        id={id} 
+                                        featured={id === this.state.featureCardId}
+                                    />
                                 )
                             })
                         }

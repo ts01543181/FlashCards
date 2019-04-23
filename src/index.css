@@ -5,8 +5,11 @@ body {
   min-width: 1120px;
 }
 h1 {
-  font-weight: 100;
+  font-weight: 800;
   color: #032e61;
+}
+.ui.modal>.header:not(.ui), .ui.form .field>label {
+  color: #212121;
 }
 .button {
   background-color:#215ca0;
@@ -148,6 +151,7 @@ h1 {
   top: 50%;
   transform: translateY(-50%);
   word-break: break-all;
+  color: #212121;
 }
 
 .collection-item,
@@ -228,6 +232,7 @@ h1 {
   height:100%;
   width:100%;
   word-break: break-all;
+  color: #212121;
 }
 
 .flip-card-text div {
@@ -295,6 +300,7 @@ i.huge.icon {
 .feature-card-text {
   height:100%;
   width:100%;
+  color: #212121;
 }
 
 .feature-card-text div {
@@ -394,6 +400,7 @@ i.huge.icon {
   transform: translateY(-50%);
   padding:3px;
   overflow: hidden;
+  color: #212121;
 }
 
 

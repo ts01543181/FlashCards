@@ -20,6 +20,8 @@ class FeatureCard extends Component {
         this.deleteCard = this.deleteCard.bind(this);
         this.toggleEditModal = this.toggleEditModal.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.addReview = this.addReview.bind(this);
+        this.deleteReview = this.deleteReview.bind(this);
     }
 
     componentDidMount() {
@@ -81,6 +83,7 @@ class FeatureCard extends Component {
             term: this.state.term,
             definition: this.state.definition,
             comment: this.state.comment,
+            review: this.props.featureCard.review,
             collection: this.props.featureCard.collection
         }, this.props.id)
         .then(() => {
@@ -91,9 +94,21 @@ class FeatureCard extends Component {
 
     deleteCard() {
         $(".feature-card-inner.flipped").toggleClass("flipped");
-        this.props.deleteCard(this.props.featureCard, this.props.id)
+        if (this.props.featureCard.review) {
+            this.deleteReview();
+        }
+        this.props.deleteCard(this.props.featureCard, this.props.id);
     }
 
+    addReview() {
+        this.props.featureCard.review = true;
+        this.props.addReview(this.props.featureCard, this.props.id);
+    }
+
+    deleteReview() {
+        this.props.featureCard.review = false;
+        this.props.deleteReview(this.props.featureCard, this.props.id);
+    }
     render() {
         return (
             <div className="feature-card-outer">
@@ -124,10 +139,8 @@ class FeatureCard extends Component {
                     </Form>
                 </Modal>
                 
-                <div className="feature-card-container"
-                    // onMouseEnter={this.toggleButtonsOn} 
-                    // onMouseLeave={this.toggleButtonsOff}
-                >
+                {/* feature section */}
+                <div className="feature-card-container">
                 {
                     this.props.featureCard ? 
                     <div className="feature-card-inner">
@@ -160,11 +173,19 @@ class FeatureCard extends Component {
                             position="right center"
                             size="mini"
                         />
-                        <Popup trigger={<div className="feature-button"><Icon name="star outline"/></div> }
-                            content="Favorite"
-                            position="right center"
-                            size="mini"
-                        />
+                        {
+                            this.props.featureCard.review ?
+                            <Popup trigger={<div className="feature-button" onClick={this.deleteReview}><Icon name="star"/></div> }
+                                content="Remove review"
+                                position="right center"
+                                size="mini"
+                            />:
+                            <Popup trigger={<div className="feature-button" onClick={this.addReview}><Icon name="star outline"/></div> }
+                                content="Review"
+                                position="right center"
+                                size="mini"
+                            />
+                        }
                     </div> :
                     null
                 }
