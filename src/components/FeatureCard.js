@@ -7,11 +7,11 @@ class FeatureCard extends Component {
         super(props);
 
         this.state = {
-            toggle: false,
+            toggle: true,
             editModalOpen: false,
-            term: null,
-            definition: null,
-            comment: null
+            term: "",
+            definition: "",
+            comment: ""
         }
         
         this.toggleButtonsOn = this.toggleButtonsOn.bind(this);
@@ -90,6 +90,7 @@ class FeatureCard extends Component {
     }
 
     deleteCard() {
+        $(".feature-card-inner.flipped").toggleClass("flipped");
         this.props.deleteCard(this.props.featureCard, this.props.id)
     }
 
@@ -102,10 +103,10 @@ class FeatureCard extends Component {
                     <div className="flip-card-container">
                         <div className="flip-card-inner" onClick={this.toggleFlip}>
                             <div className="flip-card-front">
-                                <div className="flip-card-text">{this.state.term}</div>
+                                <div className="flip-card-text"><div>{this.state.term}</div></div>
                             </div>
                             <div className="flip-card-back">
-                                <div className="flip-card-text">{this.state.definition}</div>
+                                <div className="flip-card-text"><div>{this.state.definition}</div></div>
                             </div>
                         </div>
                     </div>
@@ -124,8 +125,8 @@ class FeatureCard extends Component {
                 </Modal>
                 
                 <div className="feature-card-container"
-                    onMouseEnter={this.toggleButtonsOn} 
-                    onMouseLeave={this.toggleButtonsOff}
+                    // onMouseEnter={this.toggleButtonsOn} 
+                    // onMouseLeave={this.toggleButtonsOff}
                 >
                 {
                     this.props.featureCard ? 
@@ -137,7 +138,7 @@ class FeatureCard extends Component {
                             <div className="feature-card-text"><div>{this.props.featureCard.definition}</div></div>
                         </div>
                     </div>
-                    : ""
+                    : null
                 }
 
                 {/* feature card buttons */}

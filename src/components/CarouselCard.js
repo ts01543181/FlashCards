@@ -9,13 +9,11 @@ class CarouselCard extends Component {
         };
         this.onClick = this.onClick.bind(this);
     }
-    componentDidMount() {
-        $(".carousel-item").on("click", function(e) {
-            // $(".carousel-item.blue-border").toggleClass("blue-border");
-        })
-    }
     onClick() {
+        
+        $(".feature-card-inner.flipped").toggleClass("flipped");
         this.props.setFeatureCard(this.props.card, this.props.id);
+        // $(".feature-card-inner").toggleClass("flipped");
     }
     render() {
         return (

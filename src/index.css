@@ -6,6 +6,7 @@ body {
 }
 h1 {
   font-weight: 100;
+  color: #032e61;
 }
 .button {
   background-color:#215ca0;
@@ -27,11 +28,13 @@ h1 {
 
 .cancel-button {
   float: right;
+  width:20%;
 }
 
 .create-button {
   float:right;
   background-color: #278806;
+  width:20%;
 }
 
 .general-container {
@@ -39,6 +42,12 @@ h1 {
   margin:0 auto;
   margin-top: 4%;;
 
+}
+
+.ui.modal {
+  width: 38%;
+  padding:2%;
+  min-width: 450px;
 }
 
 /* end generic */
@@ -100,17 +109,17 @@ h1 {
 
 /* start collection */
 
-.collection-container {
 
-}
 .collection-header h1{
   display:inline-block;
   width:80%;
 }
 
-.collection-header button {
-  /* position: absolute; */
+.empty-collection-container {
+  width:20%;
+  margin: 0 auto;
 }
+
 .collection-item {
   /* margin: 2%;
   margin-left: 0; */
@@ -127,7 +136,7 @@ h1 {
 
 .collection-item:hover{
   cursor: pointer;
-  transform: scale(1.09);
+  transform: scale(1.05);
   transition: 0.3s;
 }
 
@@ -182,7 +191,8 @@ h1 {
   width: 300px;
   height: 200px;
   margin: 0 auto;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  perspective: 1000px;
+  margin-top: 20px;
 }
 
 .flip-card-inner {
@@ -206,27 +216,25 @@ h1 {
   position: absolute;
   width: 100%;
   height: 100%;
+  background: gray;
   backface-visibility: hidden;
 }
 
-.flip-card-front {
-  background-color: #bbb;
-  color: black;
-}
-
 .flip-card-back {
-  background-color: #bbb;
-  color: black;
   transform: rotateY(180deg);
 }
 
 .flip-card-text {
-  position: relative;
-  top: 50%;
   height:100%;
   width:100%;
+  word-break: break-all;
+}
+
+.flip-card-text div {
+  position: relative;
+  top: 50%;
   transform: translateY(-50%);
-  overflow: hidden;
+  backface-visibility: hidden;
 }
 
 /* .feature-card-outer {
@@ -242,17 +250,19 @@ i.huge.icon {
 }
 .next-arrow {
   float: right;
+  color: #215ca0;
 }
 
 .prev-arrow {
   float: left;
+  color: #215ca0;
 }
 .prev-arrow.invalid {
-  opacity: 0.3;
+  opacity: 0.1;
   cursor: default;
 }
 .next-arrow.invalid {
-  opacity: 0.3;
+  opacity: 0.1;
   cursor: default;
 }
 .feature-card-container {
@@ -279,11 +289,10 @@ i.huge.icon {
   transform-style: preserve-3d;
   font-family: 'Catamaran', sans-serif;
   box-shadow: 0px 3px 7px 0px rgba(138,138,138,1);
-  
+  word-break: break-all;
 }
 
 .feature-card-text {
-  overflow: hidden;
   height:100%;
   width:100%;
 }
@@ -293,6 +302,7 @@ i.huge.icon {
   top: 50%;
   transform: translateY(-50%);
   backface-visibility: hidden;
+  padding: 20px;
 }
 
 .feature-card-inner.flipped {
@@ -320,7 +330,7 @@ i.huge.icon {
 .feature-card-button {
   position:absolute;
   top:30%;
-  right:3%;
+  right:-8%;
 }
 
 .feature-button {
@@ -328,13 +338,13 @@ i.huge.icon {
 }
 
 .feature-button:hover {
-  color: rgb(130, 129, 129);
+  color: #215ca0;
   cursor: pointer;
 }
 
 .featured {
   border:1px solid #009EDB;
-  transform: scale(1.13);
+  transform: scale(1.1);
   transition: 0.3s;
 }
 
@@ -362,18 +372,20 @@ i.huge.icon {
   margin:5px;
   word-wrap: break-word;
   white-space: pre-line;
-  overflow-y: hidden;
-  padding: 5px;
+  overflow: hidden;
+  padding: 10px;
   border-radius: 4px;
   margin-top: 9px;
   margin-left: 11px;
+  box-shadow: 0px 2px 5px 0px rgba(138,138,138,1);
 }
 
 .carousel-item:hover {
   cursor: pointer;
-  transform: scale(1.13);
+  transform: scale(1.1);
   transition: 0.3s;
   background-color:#ccc;
+  overflow-y: auto;
 }
 
 .carousel-item-text {

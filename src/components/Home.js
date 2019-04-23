@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Container, Button, List, Modal, Form } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Icon, Button, List, Modal, Form } from "semantic-ui-react";
 
 class Home extends Component {
     constructor(props) {
@@ -8,8 +7,7 @@ class Home extends Component {
         this.state = {
             collectionName:"",
             collectionDescription: "",
-            open: false,
-            chars: 0
+            open: false
         };
         this.addCollection = this.addCollection.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -17,22 +15,9 @@ class Home extends Component {
     }
 
     onChange(e, type) {
-        const pre = this.state.collectionName;
         this.setState({
             [type]: e.target.value
-        }, () => {
-            if (type === "collectionName") {
-                if (this.state.collectionName.length > 120) {
-                    this.setState({
-                        [type]: pre
-                    });
-                } else {
-                    this.setState({
-                        chars: this.state.collectionName.length
-                    });
-                }
-            }
-        })
+        });
     }
 
 
@@ -63,7 +48,6 @@ class Home extends Component {
             <div className="general-container">
                 <div className="home-header">
                     <h1>View your collections</h1>
-                    <button className="button create-button" onClick={this.toggleModal}>+ New Collection</button>
                 </div>
                 <hr />
                 <Modal open={this.state.open} closeOnDimmerClick={false}>
@@ -71,7 +55,7 @@ class Home extends Component {
                     <Modal.Content>
                         <Form>
                             <Form.Field>
-                                <label>Title *required</label>
+                                <label>Title</label>
                                 <input placeholder="Name for your collection" onChange={(e) => this.onChange(e, "collectionName")} value={this.state.collectionName}/>
                             </Form.Field>
                             <Form.Field>
@@ -91,12 +75,19 @@ class Home extends Component {
                             return (
                             <div className="collection-item" onClick={() => this.props.history.push(`/collection/${col.title}`)}>
                                 <div>{col.title}</div>
-                                {/* <span>{col.description}</span> */}
-                                {/* <hr className="collection-item-hr"/> */}
                             </div>
                             )
                         }) :
-                        <div className="no-collection-text">You don't have any collection yet!</div>
+                        <div className="collection-item" onClick={this.toggleModal}>
+                            <div style={{color:"#032e61"}}>+ New Collection</div>
+                        </div>
+                    }
+                    {
+                        this.props.collection.length ?
+                        <div className="collection-item" onClick={this.toggleModal}>
+                            <div style={{color: "#032e61"}}>+ New Collection</div>
+                        </div>
+                        : null
                     }
                 </div>
                 

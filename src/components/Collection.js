@@ -40,9 +40,12 @@ class Collection extends Component {
     }
 
     onChange(e, type) {
-        this.setState({
-            [type]: e.target.value
-        });
+        const { newTerm, newDefinition } = this.state;
+        if (newDefinition.length < 260 && newTerm.length < 260) {
+            this.setState({
+                [type]: e.target.value
+            });
+        }
     }
 
     toggleModal() {
@@ -55,6 +58,7 @@ class Collection extends Component {
     }
 
     addCard() {
+        $(".feature-card-inner.flipped").toggleClass("flipped");
         const newCard = {
             term: this.state.newTerm,
             definition: this.state.newDefinition,
@@ -69,6 +73,7 @@ class Collection extends Component {
         }, () => {
             this.toggleModal();
             this.setFeatureCard(newCard, this.state.currentCollection.cards.length-1);
+            $('.carousel-container-inner').animate({ scrollLeft: "+=200px" }, "medium");
         });
     }
 
@@ -89,6 +94,7 @@ class Collection extends Component {
     }
 
     deleteCard(card, id) {
+        $(".feature-card-inner.flipped").toggleClass("flipped");
         this.props.deleteCard(card, id);
         const cards = this.state.currentCollection.cards;
         if (cards[id] == undefined) {
@@ -115,16 +121,23 @@ class Collection extends Component {
     }
 
     switchFeatureCard(prev) {
+        const width = parseInt($(".carousel-item").first().css("width"))
+            +parseInt($(".carousel-item").first().css("margin-left"))
+            +parseInt($(".carousel-item").first().css("margin-right"))
         if (prev) {
+            $(".feature-card-inner.flipped").toggleClass("flipped");
             this.setState({
                 featureCard: this.state.currentCollection.cards[this.state.featureCardId-1],
                 featureCardId: this.state.featureCardId-1
             })
+            $('.carousel-container-inner').animate({ scrollLeft: `-=${width}px` }, "medium");
         } else {
+            $(".feature-card-inner.flipped").toggleClass("flipped");
             this.setState({
                 featureCard: this.state.currentCollection.cards[this.state.featureCardId+1],
                 featureCardId: this.state.featureCardId+1
             })
+            $('.carousel-container-inner').animate({ scrollLeft: `+=${width}px` }, "medium");
         }
     }
     render() {
@@ -140,14 +153,14 @@ class Collection extends Component {
                     <div className="flip-card-container">
                         <div className="flip-card-inner" onClick={this.toggleFlip}>
                             <div className="flip-card-front">
-                                <div className="flip-card-text">{this.state.newTerm}</div>
+                                <div className="flip-card-text"><div>{this.state.newTerm}</div></div>
                             </div>
                             <div className="flip-card-back">
-                                <div className="flip-card-text">{this.state.newDefinition}</div>
+                                <div className="flip-card-text"><div>{this.state.newDefinition}</div></div>
                             </div>
                         </div>
                     </div>
-                    <Form>
+                    <Form size="large">
                         <Form.Field>
                             <label>Term</label>
                             <input placeholer="term" onChange={(e) => this.onChange(e, "newTerm")}/>
@@ -164,12 +177,12 @@ class Collection extends Component {
                 {/* feature card section */}
                 {
                     this.state.featureCardId >= 1 ? 
-                    <Icon size="huge" color="blue" name="angle double left" className="prev-arrow" onClick={() => this.switchFeatureCard(true)}/> : 
+                    <Icon size="huge" name="angle double left" className="prev-arrow" onClick={() => this.switchFeatureCard(true)}/> : 
                     <Icon size="huge" name="angle double left" className="prev-arrow invalid" />
                 }
                 {
                     this.state.featureCardId >= 0 && this.state.featureCardId < this.state.currentCollection.cards.length-1 ?
-                    <Icon size="huge" color="blue" name="angle double right" className="next-arrow" onClick={() => this.switchFeatureCard(false)}/> : 
+                    <Icon size="huge" name="angle double right" className="next-arrow" onClick={() => this.switchFeatureCard(false)}/> : 
                     <Icon size="huge" name="angle double right" className="next-arrow invalid" />
                 }
                 {
@@ -180,7 +193,8 @@ class Collection extends Component {
                         editCard={this.editCard} 
                         deleteCard={this.deleteCard}
                     /> :
-                    <div className="empty-collection-container">You don't have any cards yet!</div>
+                    // <div className="empty-collection-container">You don't have any cards yet!</div>
+                    <div className="feature-card-container" style={{background: "white"}}></div>
                 }
                 
                 {/* carousel showing all cards in collection */}
@@ -193,6 +207,9 @@ class Collection extends Component {
                                 )
                             })
                         }
+                        <div className="carousel-item" onClick={this.toggleModal}>
+                            <div className="carousel-item-text"><Icon name="add" size="large" style={{opacity:"0.5"}}/></div>
+                        </div>
                     </div>
                 </div>
             </div>
