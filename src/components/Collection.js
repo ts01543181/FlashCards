@@ -12,6 +12,8 @@ class Collection extends Component {
             newTerm: "",
             newDefinition: "",
             newComment: "",
+            newFrontImg:null,
+            newBackImg:null,
             newCardOpen: false,
             newCardReview:false,
             featureCard:null,
@@ -43,12 +45,9 @@ class Collection extends Component {
     }
 
     onChange(e, type) {
-        const { newTerm, newDefinition } = this.state;
-        if (newDefinition.length < 260 && newTerm.length < 260) {
-            this.setState({
-                [type]: e.target.value
-            });
-        }
+        this.setState({
+            [type]: e.target.value
+        });
     }
 
     toggleModal() {
@@ -66,6 +65,8 @@ class Collection extends Component {
             term: this.state.newTerm,
             definition: this.state.newDefinition,
             comment: this.state.newComment,
+            frontImg: this.state.newFrontImg && this.state.newFrontImg.length ? this.state.newFrontImg : null,
+            backImg: this.state.newBackImg && this.state.newBackImg.length ? this.state.newBackImg : null,
             review: false,
             collection:this.state.currentCollection.title
         };
@@ -73,7 +74,9 @@ class Collection extends Component {
         this.setState({
             newTerm: "",
             newDefinition: "",
-            newComment: ""
+            newComment: "",
+            newFrontImg:null,
+            newBackImg:null
         }, () => {
             this.toggleModal();
             this.setFeatureCard(newCard, this.state.currentCollection.cards.length-1);
@@ -143,6 +146,7 @@ class Collection extends Component {
             });
         })
     }
+
     toggleFlip() {
         $(".flip-card-inner").toggleClass("flipped");
     }
@@ -175,7 +179,7 @@ class Collection extends Component {
                     <button className="button create-button" onClick={this.toggleModal}>+ New Card</button>
                 </div>
                 <hr />
-                <Modal open={this.state.newCardOpen} closeOnDimmerClick={false}>
+                <Modal open={this.state.newCardOpen} closeOnDimmerClick={false} className="collection-modal">
                     <Modal.Header>Create a new card</Modal.Header>
                     <div className="flip-card-container">
                         <div className="flip-card-inner" onClick={this.toggleFlip}>
@@ -190,11 +194,19 @@ class Collection extends Component {
                     <Form size="large">
                         <Form.Field>
                             <label>Term</label>
-                            <input placeholer="term" onChange={(e) => this.onChange(e, "newTerm")}/>
+                            <input placeholer="Term" onChange={(e) => this.onChange(e, "newTerm")}/>
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Image url For Term</label>
+                            <input placeholer="Front img url" onChange={(e) => this.onChange(e, "newFrontImg")}/>
                         </Form.Field>
                         <Form.Field>
                             <label>Definition</label>
-                            <input placeholer="definition" onChange={(e) => this.onChange(e, "newDefinition")}/>
+                            <input placeholer="Definition" onChange={(e) => this.onChange(e, "newDefinition")}/>
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Image url For Definition</label>
+                            <input placeholer="Back img url" onChange={(e) => this.onChange(e, "newBackImg")}/>
                         </Form.Field>
                         <button className="button create-button" onClick={this.addCard}>Create</button>
                         <button className="button cancel-button" onClick={this.toggleModal}>Cancel</button>

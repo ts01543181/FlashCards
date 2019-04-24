@@ -14,15 +14,15 @@ class Review extends Component {
             <div>
                 123
                 {
-                    this.props.review.map((card, id) => {
-                        return (
-                            // <ReviewCarouselCard 
-                            //     card={card}
-                            //     id={id}
-                            //     reviewed={id === this.state.reviewCardId}
-                            // />
-                        )
-                    })
+                    // this.props.review.map((card, id) => {
+                    //     return (
+                    //         <ReviewCarouselCard 
+                    //             card={card}
+                    //             id={id}
+                    //             reviewed={id === this.state.reviewCardId}
+                    //         />
+                    //     )
+                    // })
                 }
             </div>
         )

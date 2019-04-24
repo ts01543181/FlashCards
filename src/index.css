@@ -53,6 +53,12 @@ h1 {
   min-width: 450px;
 }
 
+img {
+  height:100%;
+  width:100%;
+  object-fit: contain;
+  padding: 10px;
+}
 /* end generic */
 
 /* start nav */
@@ -89,7 +95,13 @@ h1 {
   color: white;
 }
 
+.nav-menu-container li a:hover {
+  color: #032e61;
+}
 
+.nav-menu-container li a.nav-clicked {
+  color: #032e61;
+}
 .nav-menu-container h1 {
   color:white;
 }

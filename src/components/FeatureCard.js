@@ -11,7 +11,9 @@ class FeatureCard extends Component {
             editModalOpen: false,
             term: "",
             definition: "",
-            comment: ""
+            comment: "",
+            frontImg:null,
+            backImg:null
         }
         
         this.toggleButtonsOn = this.toggleButtonsOn.bind(this);
@@ -29,21 +31,19 @@ class FeatureCard extends Component {
         if (!this.props.featureCard) {
             return;
         } 
-        const { term, definition, comment } = this.props.featureCard;
+        const { term, definition, comment, frontImg, backImg } = this.props.featureCard;
         this.setState({
-            term, definition, comment
+            term, definition, comment, frontImg, backImg
         });
     }
 
     componentWillReceiveProps(newProps) {
         // this will update featureCard whenever there's an update been made (edit/delete)
         if (!newProps.featureCard) return;
-        const { term, definition, comment } = newProps.featureCard;
+        const { term, definition, comment, frontImg, backImg } = newProps.featureCard;
         if (newProps.featureCard) {
             this.setState({
-                term,
-                definition,
-                comment
+                term, definition, comment, frontImg, backImg
             });
         }
     }
@@ -84,6 +84,8 @@ class FeatureCard extends Component {
             definition: this.state.definition,
             comment: this.state.comment,
             review: this.props.featureCard.review,
+            frontImg: this.state.frontImg && this.state.frontImg.length ? this.state.frontImg : this.props.featureCard.frontImg,
+            backImg: this.state.backImg && this.state.backImg.length ? this.state.backImg : this.props.featureCard.backImg,
             collection: this.props.featureCard.collection
         }, this.props.id)
         .then(() => {
@@ -110,6 +112,7 @@ class FeatureCard extends Component {
         this.props.deleteReview(this.props.featureCard, this.props.id);
     }
     render() {
+        console.log(this.props.featureCard, this.state);
         return (
             <div className="feature-card-outer">
                 {/* edit modal */}
@@ -131,8 +134,16 @@ class FeatureCard extends Component {
                             <input placeholder="Term" value={this.state.term} onChange={(e) => this.onChange(e, "term")}/>
                         </Form.Field>
                         <Form.Field>
+                            <label>Image url for term</label>
+                            <input placeholer="Front Img Url" value={this.state.frontImg} onChange={(e) => this.onChange(e, "frontImg")}/>
+                        </Form.Field>
+                        <Form.Field>
                             <label>Definition</label>
                             <input placeholder="Definition" value={this.state.definition} onChange={(e) => this.onChange(e, "definition")}/>
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Image url for definition</label>
+                            <input placeholer="Back Img Url" value={this.state.backImg} onChange={(e) => this.onChange(e, "backImg")}/>
                         </Form.Field>
                         <button className="button create-button" onClick={this.editCard}>Confirm</button>
                         <button className="button cancel-button" onClick={this.toggleEditModal}>Cancel</button>
@@ -145,10 +156,24 @@ class FeatureCard extends Component {
                     this.props.featureCard ? 
                     <div className="feature-card-inner">
                         <div className="feature-card-front">
-                            <div className="feature-card-text"><div>{this.props.featureCard.term}</div></div>
+                            {
+                                this.props.featureCard.frontImg && this.props.featureCard.frontImg.length ? 
+                                <div className="feature-card-img" style={{height:"100%", width:"50%", float:"left"}}>
+                                    <img src={this.props.featureCard.frontImg}/>
+                                </div>
+                                : null
+                            }
+                            <div className="feature-card-text" style={this.props.featureCard.frontImg && this.props.featureCard.frontImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{this.props.featureCard.term}</div></div>
                         </div>
                         <div className="feature-card-back">
-                            <div className="feature-card-text"><div>{this.props.featureCard.definition}</div></div>
+                            {
+                                this.props.featureCard.backImg && this.props.featureCard.backImg.length ? 
+                                <div className="feature-card-img" style={{height:"100%", width:"50%", float:"left"}}>
+                                    <img  src={this.props.featureCard.backImg}/>
+                                </div>
+                                : null
+                            }
+                            <div className="feature-card-text" style={this.props.featureCard.backImg && this.props.featureCard.backImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{this.props.featureCard.definition}</div></div>
                         </div>
                     </div>
                     : null
