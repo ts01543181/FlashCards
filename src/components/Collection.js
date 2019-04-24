@@ -176,7 +176,7 @@ class Collection extends Component {
             <div className="general-container">
                 <div className="collection-header">
                     <h1>{this.state.currentCollection.title}</h1>
-                    <button className="button create-button" onClick={this.toggleModal}>+ New Card</button>
+                    {/* <button className="button create-button" onClick={this.toggleModal}>+ New Card</button> */}
                 </div>
                 <hr />
                 <Modal open={this.state.newCardOpen} closeOnDimmerClick={false} className="collection-modal">
@@ -235,7 +235,13 @@ class Collection extends Component {
                         deleteReview={this.deleteReview}
                     /> :
                     // <div className="empty-collection-container">You don't have any cards yet!</div>
-                    <div className="feature-card-container" style={{background: "white"}}></div>
+                    <div className="feature-card-container" style={{background: "white"}}>
+                        <div className="feature-card-inner">
+                            <div className="feature-card-front">
+                                <div className="feature-card-text"><div>You don't have any SaleCard yet!</div></div>
+                            </div>
+                        </div> 
+                    </div>
                 }
                 
                 {/* carousel showing all cards in collection */}

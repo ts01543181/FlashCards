@@ -15,9 +15,7 @@ class FeatureCard extends Component {
             frontImg:null,
             backImg:null
         }
-        
-        this.toggleButtonsOn = this.toggleButtonsOn.bind(this);
-        this.toggleButtonsOff = this.toggleButtonsOff.bind(this);
+
         this.editCard = this.editCard.bind(this);
         this.deleteCard = this.deleteCard.bind(this);
         this.toggleEditModal = this.toggleEditModal.bind(this);
@@ -58,19 +56,6 @@ class FeatureCard extends Component {
             editModalOpen: !this.state.editModalOpen
         });
     }
-    toggleButtonsOn() {
-        if (!this.props.featureCard) return;
-        this.setState({
-            toggle: true
-        })
-    }
-
-    toggleButtonsOff() {
-        if (!this.props.featureCard) return;
-        this.setState({
-            toggle: false
-        })
-    }
 
     onChange(e, type) {
         this.setState({
@@ -110,9 +95,10 @@ class FeatureCard extends Component {
     deleteReview() {
         this.props.featureCard.review = false;
         this.props.deleteReview(this.props.featureCard, this.props.id);
+        this.props.editCard(this.props.featureCard, this.props.id);
     }
+
     render() {
-        console.log(this.props.featureCard, this.state);
         return (
             <div className="feature-card-outer">
                 {/* edit modal */}
@@ -176,9 +162,9 @@ class FeatureCard extends Component {
                             <div className="feature-card-text" style={this.props.featureCard.backImg && this.props.featureCard.backImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{this.props.featureCard.definition}</div></div>
                         </div>
                     </div>
-                    : null
+                    : 
+                    null
                 }
-
                 {/* feature card buttons */}
                 {
                     this.props.featureCard && this.state.toggle ? 

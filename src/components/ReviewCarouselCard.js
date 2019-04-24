@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import $ from "jquery";
 
-class CarouselCard extends Component {
+class ReviewCarouselCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,16 +12,16 @@ class CarouselCard extends Component {
     
     onClick() {
         $(".feature-card-inner.flipped").toggleClass("flipped");
-        this.props.setFeatureCard(this.props.card, this.props.id);
+        this.props.setReviewCard(this.props.card, this.props.id);
     }
 
     render() {
         return (
-            <div className={`carousel-item${this.props.featured ? " featured" : ""}`} onClick={this.onClick}>
+            <div className={`carousel-item${this.props.reviewed ? " featured" : ""}`} onClick={this.onClick}>
                 <div className="carousel-item-text">{this.props.card.term}</div>
             </div>
         )
     }
 }
 
-export default CarouselCard;
+export default ReviewCarouselCard;
