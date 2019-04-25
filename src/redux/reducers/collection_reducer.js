@@ -27,7 +27,20 @@ const deleteInCollection = (card, id, collections) => {
     }
 }
 
-const collectionReducer = (state=[], action) => {
+const collectionReducer = (state=[{
+    cards: [{
+        backImg: null,
+        collection: "a",
+        comment: "",
+        definition: "",
+        frontImg: null,
+        review: false,
+        reviewInd: -1,
+        term: "v"
+        }],
+        description: "",
+        title: "a",
+}], action) => {
     switch(action.type) {
         case ADD_COLLECTION:
             return [...state, action.payload];

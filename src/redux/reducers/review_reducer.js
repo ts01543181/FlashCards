@@ -1,4 +1,4 @@
-import { ADD_REVIEW, DELETE_REVIEW } from "../actions/actionTypes";
+import { ADD_REVIEW, DELETE_REVIEW, EDIT_REVIEW } from "../actions/actionTypes";
 
 const deleteReview = (card, reviews) => {
     for (let i = 0; i < reviews.length; i++) {
@@ -14,7 +14,12 @@ const reviewReducer = (state=[], action) => {
         case ADD_REVIEW:
             return [...state, action.payload.card];
         case DELETE_REVIEW:
-            return deleteReview(action.payload.card, state);
+            let copy = [...state];
+            return deleteReview(action.payload.card, copy);
+        case EDIT_REVIEW:
+            copy = [...state];
+            copy[action.payload.card.reviewInd] = action.payload.card;
+            return copy;
         default:
             return state;
     }

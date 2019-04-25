@@ -12,10 +12,10 @@ const App = ({store}) => {
             <BrowserRouter>
                 <Nav />
                 <Switch>
-                    <Route exact path="/home" component={HomeContainer}/>
+                    <Route exact path="/collection" component={HomeContainer}/>
                     <Route exact path="/collection/:collection" component={CollectionContainer}/>
                     <Route exact path="/review" component={ReviewContainer}/>
-                    <Redirect to="/home" />
+                    <Redirect to="/collection" />
                 </Switch>
             </BrowserRouter>
         </Provider>
