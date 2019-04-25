@@ -116,22 +116,26 @@ class FeatureCard extends Component {
                             </div>
                         </div>
                     </div>
-                    <Form>
+                    <Form size="large">
                         <Form.Field>
                             <label>Term</label>
                             <input value={this.state.term} onChange={(e) => this.onChange(e, "term")}/>
+                            <span className="focus-border"></span>
                         </Form.Field>
                         <Form.Field>
                             <label>Image url for term</label>
                             <input  value={this.state.frontImg} onChange={(e) => this.onChange(e, "frontImg")}/>
+                            <span className="focus-border"></span>
                         </Form.Field>
                         <Form.Field>
                             <label>Definition</label>
                             <input  value={this.state.definition} onChange={(e) => this.onChange(e, "definition")}/>
+                            <span className="focus-border"></span>
                         </Form.Field>
                         <Form.Field>
                             <label>Image url for definition</label>
                             <input   value={this.state.backImg} onChange={(e) => this.onChange(e, "backImg")}/>
+                            <span className="focus-border"></span>
                         </Form.Field>
                         <button className="button create-button" onClick={this.editCard}>Confirm</button>
                         <button className="button cancel-button" onClick={this.toggleEditModal}>Cancel</button>

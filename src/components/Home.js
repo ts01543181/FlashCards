@@ -47,20 +47,22 @@ class Home extends Component {
         return (
             <div className="general-container">
                 <div className="home-header">
-                    <h1>Your collections</h1>
+                    <h1>YOUR COLLECTIONS</h1>
                 </div>
-                <hr />
+                {/* <hr /> */}
                 <Modal open={this.state.open} closeOnDimmerClick={false}>
                     <Modal.Header>Create a new collection</Modal.Header>
                     <Modal.Content>
-                        <Form>
+                        <Form size="large">
                             <Form.Field>
                                 <label>Title</label>
                                 <input placeholder="Name for your collection" onChange={(e) => this.onChange(e, "collectionName")} value={this.state.collectionName}/>
+                                <span className="focus-border"></span>
                             </Form.Field>
                             <Form.Field>
                                 <label>Description</label>
                                 <input placeholder="Description for your collection" onChange={(e) => this.onChange(e, "collectionDescription")} value={this.state.collectionDescription}/>
+                                <span className="focus-border"></span>
                             </Form.Field>
                             <button className="button create-button" onClick={this.addCollection}>Create</button>
                             <button className="button cancel-button" onClick={this.toggleModal}>Cancel</button>
@@ -73,19 +75,25 @@ class Home extends Component {
                         this.props.collection.length ?
                         this.props.collection.map(col => {
                             return (
-                            <div className="collection-item" onClick={() => this.props.history.push(`/collection/${col.title}`)}>
-                                <div>{col.title}</div>
+                            <div className="collection-item-wrapper">
+                                <div className="collection-item" onClick={() => this.props.history.push(`/collection/${col.title}`)}>
+                                    <div>{col.title}</div>
+                                </div>
                             </div>
                             )
                         }) :
-                        <div className="collection-item" onClick={this.toggleModal}>
-                            <div style={{color:"#032e61"}}>+ New Collection</div>
+                        <div className="collection-item-wrapper">
+                            <div className="collection-item" onClick={this.toggleModal}>
+                                <div>+ New Collection</div>
+                            </div>
                         </div>
                     }
                     {
                         this.props.collection.length ?
-                        <div className="collection-item" onClick={this.toggleModal}>
-                            <div style={{color: "#032e61"}}>+ New Collection</div>
+                        <div className="collection-item-wrapper">
+                            <div className="collection-item" onClick={this.toggleModal}>
+                                <div>+ New Collection</div>
+                            </div>
                         </div>
                         : null
                     }

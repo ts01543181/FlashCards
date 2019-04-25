@@ -209,19 +209,23 @@ class Collection extends Component {
                     <Form size="large">
                         <Form.Field>
                             <label>Term</label>
-                            <input onChange={(e) => this.onChange(e, "newTerm")}/>
+                            <input onChange={(e) => this.onChange(e, "newTerm")} className="term-input"/>
+                            <span className="focus-border"></span>
                         </Form.Field>
                         <Form.Field>
                             <label>Image url for term</label>
                             <input onChange={(e) => this.onChange(e, "newFrontImg")}/>
+                            <span className="focus-border"></span>
                         </Form.Field>
                         <Form.Field>
                             <label>Definition</label>
                             <input onChange={(e) => this.onChange(e, "newDefinition")}/>
+                            <span className="focus-border"></span>
                         </Form.Field>
                         <Form.Field>
                             <label>Image url for definition</label>
                             <input onChange={(e) => this.onChange(e, "newBackImg")}/>
+                            <span className="focus-border"></span>
                         </Form.Field>
                         <button className="button create-button" onClick={this.addCard}>Create</button>
                         <button className="button cancel-button" onClick={this.toggleModal}>Cancel</button>
