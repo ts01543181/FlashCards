@@ -81,7 +81,6 @@ class Review extends Component {
         }
     }
     render() {
-        console.log("rerender", this.props.review)
         return (
             <div className="general-container">
                 <div className="collection-header">

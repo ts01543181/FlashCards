@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import $ from "jquery";
 
 class Nav extends React.Component {
-    addActive() {
-        $(this).toggleClass("nav-clicked");
-    }
     componentDidMount() {
         $(".nav-menu-container ul li a").click(function() {
             $(".nav-menu-container ul li a.nav-clicked").toggleClass("nav-clicked");
@@ -18,7 +15,7 @@ class Nav extends React.Component {
                 <div className="nav-menu-container">
                     <h1>SalesCard</h1>
                     <ul>
-                        <li><Link to="/home">Home</Link></li>
+                        <li><Link to="/collection" className="nav-clicked">Collection</Link></li>
                         <li><Link to="/review">Review</Link></li>
                         <li><Link to="/mock">Mock</Link></li>
                     </ul>

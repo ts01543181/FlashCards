@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Button, Form, Icon } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import CarouselCard from "./CarouselCard";
 import FeatureCard from "./FeatureCard";
 import $ from "jquery";
@@ -17,7 +18,7 @@ class Collection extends Component {
             newCardOpen: false,
             newCardReview:false,
             featureCard:null,
-            featureCardId:null,
+            featureCardId:null
         };
         this.toggleModal = this.toggleModal.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -68,6 +69,7 @@ class Collection extends Component {
             frontImg: this.state.newFrontImg && this.state.newFrontImg.length ? this.state.newFrontImg : null,
             backImg: this.state.newBackImg && this.state.newBackImg.length ? this.state.newBackImg : null,
             review: false,
+            reviewInd: -1,
             collection:this.state.currentCollection.title
         };
         this.props.addCard(newCard);
@@ -92,8 +94,14 @@ class Collection extends Component {
     }
 
     editCard(card, id) {
+        
+        if (card.review) {
+            this.props.editReview(card);
+        }
+        
         return this.props.editCard(card, id)
         .then(() => {
+
             this.setState({
                 featureCard:card
             });
@@ -102,28 +110,37 @@ class Collection extends Component {
 
     deleteCard(card, id) {
         $(".feature-card-inner.flipped").toggleClass("flipped");
-        this.props.deleteCard(card, id);
-        const cards = this.state.currentCollection.cards;
-        if (cards[id] == undefined) {
-            if (cards.length >= 1) {
-                this.setState({
-                    featureCard: cards[cards.length-1],
-                    featureCardId:cards.length-1
-                });
+        this.props.deleteCard(card, id)
+        .then(() => {
+            if (card.review) {
+                return this.props.deleteReview(card);
+            }
+            return Promise.resolve();
+        })
+        .then(() => {
+            const cards = this.state.currentCollection.cards;
+            if (cards[id] == undefined) {
+                if (cards.length >= 1) {
+                    this.setState({
+                        featureCard: cards[cards.length-1],
+                        featureCardId:cards.length-1
+                    });
+                } else {
+                    this.setState({
+                        featureCard: null,
+                        featureCardId:null
+                    });
+                }
             } else {
                 this.setState({
-                    featureCard: null,
-                    featureCardId:null
-                });
+                    featureCard: cards[id]
+                })
             }
-        } else {
-            this.setState({
-                featureCard: cards[id]
-            })
-        }
+        })
     }
 
     addReview(card, id) {
+        card.reviewInd = this.props.review.length;
         this.props.editCard(card, id)
         .then(() => {
             return this.props.addReview(card, id)
@@ -174,9 +191,7 @@ class Collection extends Component {
     render() {
         return (
             <div className="general-container">
-                <div className="collection-header">
-                    <h1>{this.state.currentCollection.title}</h1>
-                    {/* <button className="button create-button" onClick={this.toggleModal}>+ New Card</button> */}
+                <div className="collection-header"><h1>{this.state.currentCollection.title}</h1>
                 </div>
                 <hr />
                 <Modal open={this.state.newCardOpen} closeOnDimmerClick={false} className="collection-modal">
@@ -194,19 +209,19 @@ class Collection extends Component {
                     <Form size="large">
                         <Form.Field>
                             <label>Term</label>
-                            <input placeholer="Term" onChange={(e) => this.onChange(e, "newTerm")}/>
+                            <input onChange={(e) => this.onChange(e, "newTerm")}/>
                         </Form.Field>
                         <Form.Field>
-                            <label>Image url For Term</label>
-                            <input placeholer="Front img url" onChange={(e) => this.onChange(e, "newFrontImg")}/>
+                            <label>Image url for term</label>
+                            <input onChange={(e) => this.onChange(e, "newFrontImg")}/>
                         </Form.Field>
                         <Form.Field>
                             <label>Definition</label>
-                            <input placeholer="Definition" onChange={(e) => this.onChange(e, "newDefinition")}/>
+                            <input onChange={(e) => this.onChange(e, "newDefinition")}/>
                         </Form.Field>
                         <Form.Field>
-                            <label>Image url For Definition</label>
-                            <input placeholer="Back img url" onChange={(e) => this.onChange(e, "newBackImg")}/>
+                            <label>Image url for definition</label>
+                            <input onChange={(e) => this.onChange(e, "newBackImg")}/>
                         </Form.Field>
                         <button className="button create-button" onClick={this.addCard}>Create</button>
                         <button className="button cancel-button" onClick={this.toggleModal}>Cancel</button>

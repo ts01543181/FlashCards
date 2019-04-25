@@ -69,6 +69,7 @@ class FeatureCard extends Component {
             definition: this.state.definition,
             comment: this.state.comment,
             review: this.props.featureCard.review,
+            reviewInd: this.props.featureCard.reviewInd,
             frontImg: this.state.frontImg && this.state.frontImg.length ? this.state.frontImg : this.props.featureCard.frontImg,
             backImg: this.state.backImg && this.state.backImg.length ? this.state.backImg : this.props.featureCard.backImg,
             collection: this.props.featureCard.collection
@@ -81,6 +82,7 @@ class FeatureCard extends Component {
 
     deleteCard() {
         $(".feature-card-inner.flipped").toggleClass("flipped");
+        console.log(this.props.featureCard)
         if (this.props.featureCard.review) {
             this.deleteReview();
         }
@@ -117,19 +119,19 @@ class FeatureCard extends Component {
                     <Form>
                         <Form.Field>
                             <label>Term</label>
-                            <input placeholder="Term" value={this.state.term} onChange={(e) => this.onChange(e, "term")}/>
+                            <input value={this.state.term} onChange={(e) => this.onChange(e, "term")}/>
                         </Form.Field>
                         <Form.Field>
                             <label>Image url for term</label>
-                            <input placeholer="Front Img Url" value={this.state.frontImg} onChange={(e) => this.onChange(e, "frontImg")}/>
+                            <input  value={this.state.frontImg} onChange={(e) => this.onChange(e, "frontImg")}/>
                         </Form.Field>
                         <Form.Field>
                             <label>Definition</label>
-                            <input placeholder="Definition" value={this.state.definition} onChange={(e) => this.onChange(e, "definition")}/>
+                            <input  value={this.state.definition} onChange={(e) => this.onChange(e, "definition")}/>
                         </Form.Field>
                         <Form.Field>
                             <label>Image url for definition</label>
-                            <input placeholer="Back Img Url" value={this.state.backImg} onChange={(e) => this.onChange(e, "backImg")}/>
+                            <input   value={this.state.backImg} onChange={(e) => this.onChange(e, "backImg")}/>
                         </Form.Field>
                         <button className="button create-button" onClick={this.editCard}>Confirm</button>
                         <button className="button cancel-button" onClick={this.toggleEditModal}>Cancel</button>
