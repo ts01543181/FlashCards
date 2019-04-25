@@ -1,7 +1,7 @@
 /* start generic */
 
 body {
-  background: #D6E7FE;
+  background: #E7EFFF;
   min-width: 1120px;
 }
 
@@ -11,7 +11,7 @@ h1 {
 }
 
 .ui.active.modal {
-  background: #D6E7FE;
+  background: #E7EFFF;
 
 }
 .ui.modal>.header:not(.ui), .ui.form .field>label {
@@ -19,20 +19,22 @@ h1 {
   background: transparent;
 }
 
+.field {
+  position: relative;
+}
+
 .ui.large.form input{
   border: 0; 
   padding: 7px 0; 
-  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  border-bottom: 1px solid #aaa;
   background: transparent;
 }
 
-/* .term-input {
-  border: 0; 
-  padding: 7px 0; 
-  border-bottom: 1px solid #ccc;
+.ui.large.form input:focus {
   background: transparent;
-} */
-.term-input ~ .focus-border {
+}
+.ui.large.form input ~ .focus-border {
   position: absolute; 
   bottom: 0; 
   left: 50%; 
@@ -42,7 +44,7 @@ h1 {
   transition: 0.4s;
 }
 
-.term-input:focus ~ .focus-border{
+.ui.large.form input:focus ~ .focus-border{
   width: 100%; 
   transition: 0.4s; 
   left: 0;
@@ -185,12 +187,13 @@ hr {
 .collection-item-wrapper {
   display: inline-block;
   vertical-align: top;
+  transition:0.2s;
 }
 
 .collection-item-wrapper:hover{
   cursor: pointer;
-  transform: scale(1.05);
-  transition: 0.3s;
+  transform: scale(1.07);
+  transition: 0.2s;
 }
 
 .collection-item:hover div{
@@ -200,7 +203,7 @@ hr {
 .collection-item {
   background: #fff;
   height: 180px;
-  width:180px;
+  width:182px;
   margin:20px;
   position: relative;
   font-family: 'Catamaran', sans-serif;
@@ -352,7 +355,7 @@ i.huge.icon {
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.8s;
+  transition: transform 0.6s;
   transform-style: preserve-3d;
   font-family: 'Handlee', cursive;
   box-shadow: 0px 5px 7px 0px rgba(138,138,138,1);

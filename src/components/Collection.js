@@ -279,7 +279,7 @@ class Collection extends Component {
                             })
                         }
                         <div className="carousel-item" onClick={this.toggleModal}>
-                            <div className="carousel-item-text"><Icon name="add" size="large" style={{opacity:"0.5"}}/></div>
+                            <div className="carousel-item-text"><Icon name="add" size="large" style={{color:"#215ca0"}}/></div>
                         </div>
                     </div>
                 </div>

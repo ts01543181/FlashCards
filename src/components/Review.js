@@ -14,6 +14,7 @@ class Review extends Component {
         this.toggleFlip = this.toggleFlip.bind(this);
         this.deleteReview = this.deleteReview.bind(this);
     }
+    
     componentDidMount() {
         if (this.props.review.length) {
             this.setState({

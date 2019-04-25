@@ -29,17 +29,36 @@ const deleteInCollection = (card, id, collections) => {
 
 const collectionReducer = (state=[{
     cards: [{
-        backImg: null,
-        collection: "a",
-        comment: "",
-        definition: "",
-        frontImg: null,
-        review: false,
-        reviewInd: -1,
-        term: "v"
+            backImg: null,
+            collection: "Test",
+            comment: "",
+            definition: "this is a test term1",
+            frontImg: null,
+            review: false,
+            reviewInd: -1,
+            term: "test term 1"
+        },{
+            backImg: null,
+            collection: "Test",
+            comment: "",
+            definition: "this is a test term2",
+            frontImg: null,
+            review: false,
+            reviewInd: -1,
+            term: "test term 2"
+        },
+        {
+            backImg: null,
+            collection: "Test",
+            comment: "",
+            definition: "this is a test term3",
+            frontImg: null,
+            review: false,
+            reviewInd: -1,
+            term: "test term 3"
         }],
         description: "",
-        title: "a",
+        title: "Test",
 }], action) => {
     switch(action.type) {
         case ADD_COLLECTION:
