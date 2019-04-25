@@ -209,7 +209,7 @@ class Collection extends Component {
                     <Form size="large">
                         <Form.Field>
                             <label>Term</label>
-                            <input onChange={(e) => this.onChange(e, "newTerm")} className="term-input"/>
+                            <input onChange={(e) => this.onChange(e, "newTerm")}/>
                             <span className="focus-border"></span>
                         </Form.Field>
                         <Form.Field>

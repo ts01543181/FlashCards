@@ -85,8 +85,8 @@ class Review extends Component {
             <div className="general-container">
                 <div className="collection-header">
                     <h1>REVIEW CARDS</h1>
-                    <hr />
                 </div>
+                <hr />
                 {
                     this.state.reviewCardId >= 1 ? 
                     <Icon size="huge" name="angle double left" className="prev-arrow" onClick={() => this.switchReviewCard(true)}/> : 

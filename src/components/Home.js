@@ -49,19 +49,19 @@ class Home extends Component {
                 <div className="home-header">
                     <h1>YOUR COLLECTIONS</h1>
                 </div>
-                {/* <hr /> */}
+                <hr />
                 <Modal open={this.state.open} closeOnDimmerClick={false}>
                     <Modal.Header>Create a new collection</Modal.Header>
-                    <Modal.Content>
+                    <Modal.Content style={{background:"transparent"}}>
                         <Form size="large">
                             <Form.Field>
                                 <label>Title</label>
-                                <input placeholder="Name for your collection" onChange={(e) => this.onChange(e, "collectionName")} value={this.state.collectionName}/>
+                                <input onChange={(e) => this.onChange(e, "collectionName")} value={this.state.collectionName}/>
                                 <span className="focus-border"></span>
                             </Form.Field>
                             <Form.Field>
                                 <label>Description</label>
-                                <input placeholder="Description for your collection" onChange={(e) => this.onChange(e, "collectionDescription")} value={this.state.collectionDescription}/>
+                                <input onChange={(e) => this.onChange(e, "collectionDescription")} value={this.state.collectionDescription}/>
                                 <span className="focus-border"></span>
                             </Form.Field>
                             <button className="button create-button" onClick={this.addCollection}>Create</button>
