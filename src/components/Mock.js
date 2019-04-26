@@ -15,7 +15,7 @@ class Mock extends Component {
         super(props);
         this.state = {
             open: false,
-            min: null,
+            min: 1,
             collection:null,
             result: null,
             start: false,
