@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Icon, Button, List, Modal, Form } from "semantic-ui-react";
+import { Modal, Form } from "semantic-ui-react";
 
 class Home extends Component {
     constructor(props) {

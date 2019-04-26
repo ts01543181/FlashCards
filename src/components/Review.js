@@ -38,25 +38,36 @@ class Review extends Component {
 
     deleteReview() {
         for (let col of this.props.collection) {
+            let flag = false;
             for (let i = 0; i < col.cards.length; i++) {
                 if (col.cards[i].term === this.state.reviewCard.term) {
                     this.state.reviewCard.review = false;
                     this.props.editCard(this.state.reviewCard, i);
+                    flag = true;
                     break;
                 }
             }
+            if (flag) break;
         }
         this.props.deleteReview(this.state.reviewCard, this.state.reviewCardId)
         .then(() => {
+            console.log(this.props.review)
             if (this.props.review.length == 0) {
                 this.setState({
                     reviewCard: null,
                     reviewCardId: null
                 })
             } else {
-                this.setState({
-                    reviewCard: this.props.review[this.state.reviewCardId]
-                });
+                if (this.state.reviewCardId == this.props.review.length) {
+                    this.setState({
+                        reviewCardId: this.state.reviewCardId-1,
+                        reviewCard: this.props.review[this.state.reviewCardId-1]
+                    });
+                } else {
+                    this.setState({
+                        reviewCard: this.props.review[this.state.reviewCardId]
+                    });
+                }
             }
         })
     }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import $ from "jquery";
 
 class Nav extends React.Component {
@@ -9,15 +9,17 @@ class Nav extends React.Component {
             $(this).toggleClass("nav-clicked")
         })
     }
+    
     render() {
+        const cur = this.props.location.pathname.split("/")[1];
         return (
             <div className="nav-container">
                 <div className="nav-menu-container">
                     <h1>SalesCard</h1>
                     <ul>
-                        <li><Link to="/collection" className="nav-clicked">Collection</Link></li>
-                        <li><Link to="/review">Review</Link></li>
-                        <li><Link to="/mock">Mock</Link></li>
+                        <li><Link to="/collection" className={cur === "collection" ? "nav-clicked" : ""}>Collection</Link></li>
+                        <li><Link to="/review" className={cur === "review" ? "nav-clicked" : ""}>Review</Link></li>
+                        <li><Link to="/mock" className={cur === "mock" ? "nav-clicked" : ""}>Mock</Link></li>
                     </ul>
                 </div>
             </div>
@@ -25,4 +27,4 @@ class Nav extends React.Component {
     }
 }
 
-export default Nav;
+export default withRouter(Nav);

@@ -197,7 +197,7 @@ class FeatureCard extends Component {
                         />
                         {
                             this.props.featureCard.review ?
-                            <Popup trigger={<div className="feature-button" onClick={this.deleteReview}><Icon name="star"/></div> }
+                            <Popup trigger={<div className="feature-button" onClick={this.deleteReview}><Icon name="star" className="starred"/></div> }
                                 content="Add/Remove Review"
                                 position="right center"
                                 size="mini"

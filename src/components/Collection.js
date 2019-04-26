@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button, Form, Icon } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Modal, Form, Icon } from "semantic-ui-react";
 import CarouselCard from "./CarouselCard";
 import FeatureCard from "./FeatureCard";
 import $ from "jquery";
@@ -34,7 +33,7 @@ class Collection extends Component {
 
     componentWillMount() {
         for (let col of this.props.collection) {
-            if (col.title == this.props.match.params.collection) {
+            if (col.title === this.props.match.params.collection) {
                 this.setState({
                     currentCollection: col,
                     featureCard: col.cards[0],
@@ -119,7 +118,7 @@ class Collection extends Component {
         })
         .then(() => {
             const cards = this.state.currentCollection.cards;
-            if (cards[id] == undefined) {
+            if (cards[id] === undefined) {
                 if (cards.length >= 1) {
                     this.setState({
                         featureCard: cards[cards.length-1],
@@ -258,7 +257,7 @@ class Collection extends Component {
                     <div className="feature-card-container" style={{background: "white"}}>
                         <div className="feature-card-inner">
                             <div className="feature-card-front">
-                                <div className="feature-card-text"><div>You don't have any SaleCard yet!</div></div>
+                                <div className="feature-card-text"><div>You don't have any cards yet!</div></div>
                             </div>
                         </div> 
                     </div>

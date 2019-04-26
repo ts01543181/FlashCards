@@ -419,8 +419,11 @@ i.huge.icon {
   transition: 0.3s;
 }
 
+.starred {
+  color: #FFB53C;
+}
 .carousel-container-inner {
-  height: 7.5em;
+  height: 9.5em;
   width: 70%;
   margin:0 auto;
   margin-top: 4%;
@@ -437,7 +440,7 @@ i.huge.icon {
   display:inline-block;
   width:150px;
   background-color: white;
-  height:85%;
+  height:7em;
   text-align: center;
   vertical-align:top;
   margin:5px;
@@ -455,7 +458,7 @@ i.huge.icon {
   cursor: pointer;
   transform: scale(1.1);
   transition: 0.3s;
-  background-color:#ccc;
+  background-color:#ddd;
   overflow-y: hidden;
 }
 
