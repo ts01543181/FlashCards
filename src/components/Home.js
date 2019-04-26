@@ -47,7 +47,7 @@ class Home extends Component {
         return (
             <div className="general-container">
                 <div className="home-header">
-                    <h1>YOUR COLLECTIONS</h1>
+                    <h1>Your collections</h1>
                 </div>
                 <hr />
                 <Modal open={this.state.open} closeOnDimmerClick={false}>

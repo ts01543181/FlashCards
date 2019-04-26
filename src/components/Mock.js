@@ -189,7 +189,7 @@ class Mock extends Component {
         return (
             <div className="general-container">
                 <div className="collection-header">
-                    <h1>Choose a collection below</h1>
+                    <h1>Select a collection below to start</h1>
                 </div>
                 <hr />
                 <Modal open={this.state.open} closeOnDimmerClick={false}>
