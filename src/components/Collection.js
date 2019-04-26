@@ -191,7 +191,8 @@ class Collection extends Component {
     render() {
         return (
             <div className="general-container">
-                <div className="collection-header"><h1>{this.state.currentCollection.title}</h1>
+                <div className="collection-header">
+                    <h1>{this.state.currentCollection.title}</h1>
                 </div>
                 <hr />
                 <Modal open={this.state.newCardOpen} closeOnDimmerClick={false} className="collection-modal">

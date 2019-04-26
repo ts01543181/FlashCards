@@ -23,7 +23,7 @@ h1 {
   position: relative;
 }
 
-.ui.large.form input{
+.ui.large.form input, input {
   border: 0; 
   padding: 7px 0; 
   border-radius: 0;
@@ -31,10 +31,10 @@ h1 {
   background: transparent;
 }
 
-.ui.large.form input:focus {
+.ui.large.form input:focus, input:focus {
   background: transparent;
 }
-.ui.large.form input ~ .focus-border {
+.ui.large.form input ~ .focus-border, input ~ .focus-border {
   position: absolute; 
   bottom: 0; 
   left: 50%; 
@@ -44,7 +44,7 @@ h1 {
   transition: 0.4s;
 }
 
-.ui.large.form input:focus ~ .focus-border{
+.ui.large.form input:focus ~ .focus-border, input:focus ~ .focus-border{
   width: 100%; 
   transition: 0.4s; 
   left: 0;
@@ -471,3 +471,31 @@ i.huge.icon {
 
 /* end collection */
 
+/* mock */
+
+.timer {
+  font-size: 30px;
+  width:13%;
+  margin:0 auto;
+  color:#0C40A6;
+}
+
+input {
+  width: 100%;
+}
+.mock-dropdown-container {
+  margin-top:20px;
+}
+
+.answer-container {
+  margin-top: 30px;
+}
+
+.answer-container button {
+  margin-top:10px;
+}
+
+.answer-container label {
+  font-size:20px;
+  color: #215ca0;
+}
