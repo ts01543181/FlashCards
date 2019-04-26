@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Dropdown, Form } from "semantic-ui-react";
+import { Modal, Dropdown, Form, Icon } from "semantic-ui-react";
 
 const times = [
     {text:"1 mins", value:1},
@@ -41,23 +41,25 @@ class Mock extends Component {
             open:false,
             collectionInd:0,
             answer:"",
-            answerArr:[]
+            answerArr:[],
+            sec:0,
+            secStr:"00"
         });
     }
     nextCard() {
-        if (this.state.collectionInd + 1 == this.state.collection.cards.length) {
-            this.setState({
-                resultOpen: true
-            })
-        } else {
-            let correct = this.state.answer === this.state.collection.cards[this.state.collectionInd].definition;
-
-            this.setState({
-                collectionInd: this.state.collectionInd+1,
-                answer: "",
-                answerArr: [...this.state.answerArr, correct]
-            });
-        }
+        let correct = this.state.answer === this.state.collection[this.state.collectionInd].definition;
+        this.setState({
+            collectionInd: this.state.collectionInd+1,
+            answer: "",
+            answerArr: [...this.state.answerArr, correct]
+        }, () => {
+            if (this.state.collectionInd == this.state.collection.length) {
+                clearInterval(this.interval_id);
+                this.setState({
+                    resultOpen: true
+                })
+            }
+        })
     }
     onChange(e) {
         this.setState({
@@ -76,10 +78,14 @@ class Mock extends Component {
             title = e.target.innerHTML;
         }
         let col;
-        for (let c of this.props.collection) {
-            if (c.title == title) {
-                col = c;
-                break;
+        if (title === "review") {
+            col = this.props.review;
+        } else {
+            for (let c of this.props.collection) {
+                if (c.title == title) {
+                    col = c.cards;
+                    break;
+                }
             }
         }
         this.setState({
@@ -119,16 +125,13 @@ class Mock extends Component {
         })
     }
     render() {
+        
         if (this.state.start) {
-            const cards = this.state.collection.cards;
+
+            const cards = this.state.collection;
             let i = this.state.collectionInd;
-            return (
-                <div className="general-container">
-                    <div className="timer-container">
-                        <div className="timer">
-                            {this.state.min < 10 ? "0" + this.state.min : this.state.min} : {this.state.secStr}
-                        </div>
-                    </div>
+            if (i == cards.length) {
+                return (
                     <Modal open={this.state.resultOpen}>
                         <Modal.Header>Times up! Here's your result!</Modal.Header>
                         <div className="result-container">
@@ -138,8 +141,7 @@ class Mock extends Component {
                                         return (
                                             <li>
                                                 <div>
-                                                    <span>{card.term}</span>
-                                                    <div>{this.state.answerArr[i] == undefined ? "Wrong" : (this.state.answerArr[i] ? "Correct" : "Wrong")}</div>
+                                                    <div>{this.state.answerArr[i] == undefined ? <Icon name="close" color="red"/> : (this.state.answerArr[i] ? <Icon name="checkmark" color="green"/> : <Icon name="close" color="red"/>)} <div className="result-term">{card.term}</div></div>
                                                 </div>
                                             </li>
                                         )
@@ -149,7 +151,15 @@ class Mock extends Component {
                         </div>
                         <button className="button cancel-button" onClick={this.closeResult}>Close</button>
                     </Modal>
-
+                )
+            }
+            return (
+                <div className="general-container">
+                    <div className="timer-container">
+                        <div className="timer">
+                            {this.state.min < 10 ? "0" + this.state.min : this.state.min} : {this.state.secStr}
+                        </div>
+                    </div>
                     <div className="feature-card-container">
                         <div className="feature-card-inner">
                             <div className="feature-card-front">
@@ -173,23 +183,13 @@ class Mock extends Component {
                         </Form.Field>
                         <button className="button create-button" onClick={this.nextCard}>Next</button>
                     </Form>
-                    {/* <div className="answer-container">
-                        <div className="answer-input">
-                            <label>Answer</label>
-                            <input value={this.state.answer} onChange={this.onChange} />
-                            <span className="focus-border"></span>
-                        </div>
-                        <div></div>
-                        
-                        
-                    </div> */}
                 </div>
             )
         }
         return (
             <div className="general-container">
                 <div className="collection-header">
-                    <h1>CHOOSE A COLLECTION BELOW</h1>
+                    <h1>Choose a collection below</h1>
                 </div>
                 <hr />
                 <Modal open={this.state.open} closeOnDimmerClick={false}>
@@ -223,7 +223,7 @@ class Mock extends Component {
                     this.props.review.length ? 
                     <div className="collection-item-wrapper" onClick={this.toggleModal}>
                         <div className="collection-item" data-title="review">
-                            <div>REVIEW SET</div>
+                            <div>Review</div>
                         </div>
                     </div>
                     :

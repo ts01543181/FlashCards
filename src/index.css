@@ -456,7 +456,7 @@ i.huge.icon {
   transform: scale(1.1);
   transition: 0.3s;
   background-color:#ccc;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .carousel-item-text {
@@ -498,4 +498,31 @@ input {
 .answer-container label {
   font-size:20px;
   color: #215ca0;
+}
+
+ul {
+  padding-left: 0;
+}
+.result-container ul li {
+  list-style: none;
+  font-size: 20px;
+  margin:10px;
+  overflow: hidden;
+}
+
+.result-term {
+  color:#215ca0;
+  display:inline-block;
+  position: absolute;
+  height: 10%;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+.result-container ~ button {
+  margin-top: 10%;
+}
+
+.result-container i {
+  margin-top: 2%;
 }

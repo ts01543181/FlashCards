@@ -85,7 +85,7 @@ class Review extends Component {
         return (
             <div className="general-container">
                 <div className="collection-header">
-                    <h1>REVIEW CARDS</h1>
+                    <h1>Review your cards</h1>
                 </div>
                 <hr />
                 {
