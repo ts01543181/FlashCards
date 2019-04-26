@@ -52,8 +52,14 @@ class FeatureCard extends Component {
     }
 
     toggleEditModal() {
+        const card = this.props.featureCard;
         this.setState({
-            editModalOpen: !this.state.editModalOpen
+            editModalOpen: !this.state.editModalOpen,
+            term: card.term,
+            definition: card.definition,
+            comment: card.comment,
+            frontImg:card.frontImg,
+            backImg:card.backImg
         });
     }
 
@@ -82,7 +88,6 @@ class FeatureCard extends Component {
 
     deleteCard() {
         $(".feature-card-inner.flipped").toggleClass("flipped");
-        console.log(this.props.featureCard)
         if (this.props.featureCard.review) {
             this.deleteReview();
         }
@@ -193,12 +198,12 @@ class FeatureCard extends Component {
                         {
                             this.props.featureCard.review ?
                             <Popup trigger={<div className="feature-button" onClick={this.deleteReview}><Icon name="star"/></div> }
-                                content="Remove review"
+                                content="Add/Remove Review"
                                 position="right center"
                                 size="mini"
                             />:
                             <Popup trigger={<div className="feature-button" onClick={this.addReview}><Icon name="star outline"/></div> }
-                                content="Review"
+                                content="Add/Remove Review"
                                 position="right center"
                                 size="mini"
                             />

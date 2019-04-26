@@ -133,7 +133,7 @@ class Mock extends Component {
             if (i == cards.length) {
                 return (
                     <Modal open={this.state.resultOpen}>
-                        <Modal.Header>Times up! Here's your result!</Modal.Header>
+                        <Modal.Header>Here's your result!</Modal.Header>
                         <div className="result-container">
                             <ul>
                                 {
