@@ -36,14 +36,17 @@ class Mock extends Component {
     }
     closeResult() {
         this.setState({
-            resultOpen: false,
+            open: false,
+            min: 1,
+            collection:null,
+            result: null,
             start: false,
-            open:false,
-            collectionInd:0,
-            answer:"",
-            answerArr:[],
             sec:0,
-            secStr:"00"
+            secStr:"00",
+            resultOpen: false,
+            collectionInd:0,
+            answer: "",
+            answerArr:[]
         });
     }
     nextCard() {
