@@ -15,7 +15,7 @@ class Nav extends React.Component {
         return (
             <div className="nav-container">
                 <div className="nav-menu-container">
-                    <h1>SalesCard</h1>
+                    <h1><Link to="/collection" style={{color:"white"}}>SalesCard</Link></h1>
                     <ul>
                         <li><Link to="/collection" className={cur === "collection" ? "nav-clicked" : ""}>Collection</Link></li>
                         <li><Link to="/review" className={cur === "review" ? "nav-clicked" : ""}>Review</Link></li>
