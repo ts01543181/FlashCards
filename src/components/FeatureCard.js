@@ -156,7 +156,7 @@ class FeatureCard extends Component {
                             {
                                 this.props.featureCard.frontImg && this.props.featureCard.frontImg.length ? 
                                 <div className="feature-card-img" style={{height:"100%", width:"50%", float:"left"}}>
-                                    <img src={this.props.featureCard.frontImg}/>
+                                    <img src={this.props.featureCard.frontImg} alt="invalid"/>
                                 </div>
                                 : null
                             }
@@ -166,7 +166,7 @@ class FeatureCard extends Component {
                             {
                                 this.props.featureCard.backImg && this.props.featureCard.backImg.length ? 
                                 <div className="feature-card-img" style={{height:"100%", width:"50%", float:"left"}}>
-                                    <img  src={this.props.featureCard.backImg}/>
+                                    <img  src={this.props.featureCard.backImg} alt="invalid"/>
                                 </div>
                                 : null
                             }

@@ -41,8 +41,9 @@ class Review extends Component {
             let flag = false;
             for (let i = 0; i < col.cards.length; i++) {
                 if (col.cards[i].term === this.state.reviewCard.term) {
-                    this.state.reviewCard.review = false;
-                    this.props.editCard(this.state.reviewCard, i);
+                    const edited = {...this.state.reviewCard};
+                    edited.review = false;
+                    this.props.editCard(edited, i);
                     flag = true;
                     break;
                 }
@@ -51,14 +52,13 @@ class Review extends Component {
         }
         this.props.deleteReview(this.state.reviewCard, this.state.reviewCardId)
         .then(() => {
-            console.log(this.props.review)
-            if (this.props.review.length == 0) {
+            if (this.props.review.length === 0) {
                 this.setState({
                     reviewCard: null,
                     reviewCardId: null
                 })
             } else {
-                if (this.state.reviewCardId == this.props.review.length) {
+                if (this.state.reviewCardId === this.props.review.length) {
                     this.setState({
                         reviewCardId: this.state.reviewCardId-1,
                         reviewCard: this.props.review[this.state.reviewCardId-1]
@@ -117,7 +117,7 @@ class Review extends Component {
                             {
                                 this.state.reviewCard.frontImg && this.state.reviewCard.frontImg.length ? 
                                 <div className="feature-card-img" style={{height:"100%", width:"50%", float:"left"}}>
-                                    <img src={this.state.reviewCard.frontImg}/>
+                                    <img src={this.state.reviewCard.frontImg} alt="invalid"/>
                                 </div>
                                 : null
                             }
@@ -127,7 +127,7 @@ class Review extends Component {
                             {
                                 this.state.reviewCard.backImg && this.state.reviewCard.backImg.length ? 
                                 <div className="feature-card-img" style={{height:"100%", width:"50%", float:"left"}}>
-                                    <img  src={this.state.reviewCard.backImg}/>
+                                    <img  src={this.state.reviewCard.backImg} alt="invalid"/>
                                 </div>
                                 : null
                             }

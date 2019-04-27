@@ -53,7 +53,7 @@ class Mock extends Component {
             answer: "",
             answerArr: [...this.state.answerArr, correct]
         }, () => {
-            if (this.state.collectionInd == this.state.collection.length) {
+            if (this.state.collectionInd === this.state.collection.length) {
                 clearInterval(this.interval_id);
                 this.setState({
                     resultOpen: true
@@ -82,7 +82,7 @@ class Mock extends Component {
             col = this.props.review;
         } else {
             for (let c of this.props.collection) {
-                if (c.title == title) {
+                if (c.title === title) {
                     col = c.cards;
                     break;
                 }
@@ -95,8 +95,8 @@ class Mock extends Component {
     }
     
     countDown() {
-        if (this.state.sec == 0) {
-            if (this.state.min == 0) {
+        if (this.state.sec === 0) {
+            if (this.state.min === 0) {
                 clearInterval(this.interval_id);
                 this.setState({
                     resultOpen:true
@@ -130,7 +130,7 @@ class Mock extends Component {
 
             const cards = this.state.collection;
             let i = this.state.collectionInd;
-            if (i == cards.length) {
+            if (i === cards.length) {
                 return (
                     <Modal open={this.state.resultOpen}>
                         <Modal.Header>Here's your result!</Modal.Header>
@@ -141,7 +141,7 @@ class Mock extends Component {
                                         return (
                                             <li>
                                                 <div>
-                                                    <div>{this.state.answerArr[i] == undefined ? <Icon name="close" color="red"/> : (this.state.answerArr[i] ? <Icon name="checkmark" color="green"/> : <Icon name="close" color="red"/>)} <div className="result-term">{card.term}</div></div>
+                                                    <div>{this.state.answerArr[i] === undefined ? <Icon name="close" color="red"/> : (this.state.answerArr[i] ? <Icon name="checkmark" color="green"/> : <Icon name="close" color="red"/>)} <div className="result-term">{card.term}</div></div>
                                                 </div>
                                             </li>
                                         )
@@ -166,7 +166,7 @@ class Mock extends Component {
                                 {
                                     cards[i].frontImg && cards[i].frontImg.length ? 
                                     <div className="feature-card-img" style={{height:"100%", width:"50%", float:"left"}}>
-                                        <img src={cards[i].frontImg}/>
+                                        <img src={cards[i].frontImg} alt="invalid"/>
                                     </div>
                                     : null
                                 }
