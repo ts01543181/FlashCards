@@ -58,6 +58,7 @@ class Review extends Component {
                     reviewCardId: null
                 })
             } else {
+                $(".feature-card-inner.flipped").toggleClass("flipped");
                 if (this.state.reviewCardId === this.props.review.length) {
                     this.setState({
                         reviewCardId: this.state.reviewCardId-1,

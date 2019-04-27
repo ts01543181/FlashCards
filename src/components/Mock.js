@@ -78,8 +78,9 @@ class Mock extends Component {
             title = e.target.innerHTML;
         }
         let col;
-        if (title === "review") {
+        if (title === "review" || title === "Review") {
             col = this.props.review;
+
         } else {
             for (let c of this.props.collection) {
                 if (c.title === title) {
@@ -125,7 +126,7 @@ class Mock extends Component {
         })
     }
     render() {
-        
+        console.log(this.state);
         if (this.state.start) {
 
             const cards = this.state.collection;
