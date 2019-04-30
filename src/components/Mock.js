@@ -15,12 +15,12 @@ class Mock extends Component {
         super(props);
         this.state = {
             open: false,
-            min: 0,
+            min: 1,
             collection:null,
             result: null,
             start: false,
-            sec:10,
-            secStr:"10",
+            sec:0,
+            secStr:"00",
             resultOpen: false,
             collectionInd:0,
             answer: "",
