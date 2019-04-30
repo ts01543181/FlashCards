@@ -199,9 +199,23 @@ class Collection extends Component {
                     <div className="flip-card-container">
                         <div className="flip-card-inner" onClick={this.toggleFlip}>
                             <div className="flip-card-front">
+                                {
+                                    this.state.newFrontImg && this.state.newFrontImg.length ? 
+                                    <div className="feature-card-img" style={{height:"100%", width:`${this.state.newTerm.length ? "50%" : "100%"}`, float:"left"}}>
+                                        <img src={this.state.newFrontImg} alt="invalid"/>
+                                    </div>
+                                    : null
+                                }
                                 <div className="flip-card-text"><div>{this.state.newTerm}</div></div>
                             </div>
                             <div className="flip-card-back">
+                                {
+                                    this.state.newBackImg && this.state.newBackImg.length ? 
+                                    <div className="feature-card-img" style={{height:"100%", width:`${this.state.newDefinition.length ? "50%" : "100%"}`, float:"left"}}>
+                                        <img src={this.state.newBackImg} alt="invalid"/>
+                                    </div>
+                                    : null
+                                }
                                 <div className="flip-card-text"><div>{this.state.newDefinition}</div></div>
                             </div>
                         </div>

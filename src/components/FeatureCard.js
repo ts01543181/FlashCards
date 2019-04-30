@@ -114,9 +114,23 @@ class FeatureCard extends Component {
                     <div className="flip-card-container">
                         <div className="flip-card-inner" onClick={this.toggleFlip}>
                             <div className="flip-card-front">
+                                {
+                                    this.state.frontImg && this.state.frontImg.length ? 
+                                    <div className="feature-card-img" style={{height:"100%", width:`${this.state.term.length ? "50%" : "100%"}`, float:"left"}}>
+                                        <img src={this.state.frontImg} alt="invalid"/>
+                                    </div>
+                                    : null
+                                }
                                 <div className="flip-card-text"><div>{this.state.term}</div></div>
                             </div>
                             <div className="flip-card-back">
+                                {
+                                    this.state.backImg && this.state.backImg.length ? 
+                                    <div className="feature-card-img" style={{height:"100%", width:`${this.state.definition.length ? "50%" : "100%"}`, float:"left"}}>
+                                        <img src={this.state.backImg} alt="invalid"/>
+                                    </div>
+                                    : null
+                                }
                                 <div className="flip-card-text"><div>{this.state.definition}</div></div>
                             </div>
                         </div>
@@ -155,7 +169,7 @@ class FeatureCard extends Component {
                         <div className="feature-card-front">
                             {
                                 this.props.featureCard.frontImg && this.props.featureCard.frontImg.length ? 
-                                <div className="feature-card-img" style={{height:"100%", width:"50%", float:"left"}}>
+                                <div className="feature-card-img" style={{height:"100%", width:`${this.props.featureCard.term.length ? "50%" : "100%"}`, float:"left"}}>
                                     <img src={this.props.featureCard.frontImg} alt="invalid"/>
                                 </div>
                                 : null
@@ -165,7 +179,7 @@ class FeatureCard extends Component {
                         <div className="feature-card-back">
                             {
                                 this.props.featureCard.backImg && this.props.featureCard.backImg.length ? 
-                                <div className="feature-card-img" style={{height:"100%", width:"50%", float:"left"}}>
+                                <div className="feature-card-img" style={{height:"100%", width:`${this.props.featureCard.definition.length ? "50%" : "100%"}`, float:"left"}}>
                                     <img  src={this.props.featureCard.backImg} alt="invalid"/>
                                 </div>
                                 : null
