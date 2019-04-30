@@ -15,12 +15,12 @@ class Mock extends Component {
         super(props);
         this.state = {
             open: false,
-            min: 1,
+            min: 0,
             collection:null,
             result: null,
             start: false,
-            sec:0,
-            secStr:"00",
+            sec:10,
+            secStr:"10",
             resultOpen: false,
             collectionInd:0,
             answer: "",
@@ -104,6 +104,8 @@ class Mock extends Component {
                 clearInterval(this.interval_id);
                 this.setState({
                     resultOpen:true
+                }, () => {
+                    console.log(this.state)
                 });
             } else {
                 let newSec = 59;
@@ -129,12 +131,11 @@ class Mock extends Component {
         })
     }
     render() {
-        console.log(this.state);
         if (this.state.start) {
 
             const cards = this.state.collection;
             let i = this.state.collectionInd;
-            if (i === cards.length) {
+            if (i === cards.length || (this.state.sec === 0 && this.state.min === 0)) {
                 return (
                     <Modal open={this.state.resultOpen}>
                         <Modal.Header>Here's your result!</Modal.Header>

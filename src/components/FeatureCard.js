@@ -76,8 +76,8 @@ class FeatureCard extends Component {
             comment: this.state.comment,
             review: this.props.featureCard.review,
             reviewInd: this.props.featureCard.reviewInd,
-            frontImg: this.state.frontImg && this.state.frontImg.length ? this.state.frontImg : this.props.featureCard.frontImg,
-            backImg: this.state.backImg && this.state.backImg.length ? this.state.backImg : this.props.featureCard.backImg,
+            frontImg: this.state.frontImg && this.state.frontImg.length ? this.state.frontImg : null,
+            backImg: this.state.backImg && this.state.backImg.length ? this.state.backImg : null,
             collection: this.props.featureCard.collection
         }, this.props.id)
         .then(() => {
