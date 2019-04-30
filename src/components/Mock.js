@@ -104,8 +104,6 @@ class Mock extends Component {
                 clearInterval(this.interval_id);
                 this.setState({
                     resultOpen:true
-                }, () => {
-                    console.log(this.state)
                 });
             } else {
                 let newSec = 59;

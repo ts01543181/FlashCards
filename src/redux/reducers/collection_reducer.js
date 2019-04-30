@@ -27,8 +27,10 @@ const deleteInCollection = (card, id, collections) => {
     }
 }
 
-const collectionReducer = (state=[{
-    cards: [{
+const collectionReducer = (
+    state = [
+    {
+        cards: [{
             backImg: null,
             collection: "Fruits",
             comment: "",
@@ -69,7 +71,72 @@ const collectionReducer = (state=[{
         }],
         description: "",
         title: "Fruits",
-}], action) => {
+    },
+    {
+        cards:[{
+            backImg: null,
+            collection: "Animals",
+            comment: "",
+            definition: "cheetah",
+            frontImg:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKYgG50_9Xm8fDoP6o7ThhzJ72KdojpUUJI6_zynG0omch6v7R",
+            review:false,
+            reviewInd:-1,
+            term:"Big cat with black dots"
+        },
+        {
+            backImg: null,
+            collection: "Animals",
+            comment: "",
+            definition: "leopard",
+            frontImg:"https://www.safaribookings.com/blog/wp-content/uploads/2017/06/Leopard-BW_1200px.jpg",
+            review:false,
+            reviewInd:-1,
+            term:"Another big cat with black dots"
+        },
+        {
+            backImg: null,
+            collection: "Animals",
+            comment: "",
+            definition: "zebra",
+            frontImg:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Common_zebra_1.jpg/1200px-Common_zebra_1.jpg",
+            review:false,
+            reviewInd:-1,
+            term:"A black and white horse"
+        },
+        {
+            backImg: null,
+            collection: "Animals",
+            comment: "",
+            definition: "elephant",
+            frontImg:"https://www.safaribookings.com/blog/wp-content/uploads/2017/05/What-todo-Encounter-Elephant-BW_1200px.jpg",
+            review:false,
+            reviewInd:-1,
+            term:"A huge one with teeth sticking out"
+        },
+        {
+            backImg: null,
+            collection: "Animals",
+            comment: "",
+            definition: "husky",
+            frontImg:"https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/22184327/Siberian-Husky-on-White-12-800x600-1.jpg",
+            review:false,
+            reviewInd:-1,
+            term:"A wolf-like dog"
+        },
+        {
+            backImg: null,
+            collection: "Animals",
+            comment: "",
+            definition: "owl",
+            frontImg:"http://www.baybeachwildlife.com/wp-content/uploads/2011/12/AnimalsFAQs-Owl.jpg",
+            review:false,
+            reviewInd:-1,
+            term:"a bird"
+        }],
+        description: "",
+        title: "Animals"
+    }
+], action) => {
     switch(action.type) {
         case ADD_COLLECTION:
             return [...state, action.payload];
