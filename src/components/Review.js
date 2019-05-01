@@ -117,7 +117,7 @@ class Review extends Component {
                         <div className="feature-card-front">
                             {
                                 this.state.reviewCard.frontImg && this.state.reviewCard.frontImg.length ? 
-                                <div className="feature-card-img" style={{height:"100%", width:"50%", float:"left"}}>
+                                <div className="feature-card-img" style={{height:"100%", width:`${this.state.reviewCard.term.length ? "50%" : "100%"}`, float:"left"}}>
                                     <img src={this.state.reviewCard.frontImg} alt="invalid"/>
                                 </div>
                                 : null

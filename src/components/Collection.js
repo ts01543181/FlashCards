@@ -56,6 +56,8 @@ class Collection extends Component {
             newTerm: "",
             newDefinition: "",
             newComment: "",
+            newFrontImg:null,
+            newBackImg:null,
         });
     }
 
