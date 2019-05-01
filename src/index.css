@@ -142,6 +142,9 @@ hr {
   padding-left:50px;
 }
 
+.nav-menu-container a {
+  text-shadow: 1px 2px 3px #444;
+}
 .nav-menu-container li a {
   color: white;
 }

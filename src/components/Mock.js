@@ -144,7 +144,9 @@ class Mock extends Component {
                                         return (
                                             <li>
                                                 <div>
-                                                    <div>{this.state.answerArr[i] === undefined ? <Icon name="close" color="red"/> : (this.state.answerArr[i] ? <Icon name="checkmark" color="green"/> : <Icon name="close" color="red"/>)} <div className="result-term">{card.term}</div></div>
+                                                    <div>{this.state.answerArr[i] === undefined ? 
+                                                    <Icon name="close" color="red"/> : (this.state.answerArr[i] ? <Icon name="checkmark" color="green"/> : 
+                                                    <Icon name="close" color="red"/>)} <div className="result-term">{card.term || "No term for this card"}</div></div>
                                                 </div>
                                             </li>
                                         )
@@ -168,12 +170,17 @@ class Mock extends Component {
                             <div className="feature-card-front">
                                 {
                                     cards[i].frontImg && cards[i].frontImg.length ? 
-                                    <div className="feature-card-img" style={{height:"100%", width:"50%", float:"left"}}>
+                                    <div className="feature-card-img" style={{height:"100%", width:`${cards[i].term.length ? "50%" : "100%"}`, float:"left"}}>
                                         <img src={cards[i].frontImg} alt="invalid"/>
                                     </div>
                                     : null
                                 }
-                                <div className="feature-card-text" style={cards[i].frontImg && cards[i].frontImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{cards[i].term}</div></div>
+                                {
+                                    cards[i].term.length ? 
+                                    <div className="feature-card-text" style={cards[i].frontImg && cards[i].frontImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{cards[i].term}</div></div>
+                                    :
+                                    null
+                                }
                             </div>
                         </div>
                     </div>
