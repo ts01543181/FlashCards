@@ -174,7 +174,12 @@ class FeatureCard extends Component {
                                 </div>
                                 : null
                             }
-                            <div className="feature-card-text" style={this.props.featureCard.frontImg && this.props.featureCard.frontImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{this.props.featureCard.term}</div></div>
+                            {
+                                this.props.featureCard.term.length ? 
+                                <div className="feature-card-text" style={this.props.featureCard.frontImg && this.props.featureCard.frontImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{this.props.featureCard.term}</div></div>
+                                :
+                                null
+                            }
                         </div>
                         <div className="feature-card-back">
                             {
@@ -184,7 +189,12 @@ class FeatureCard extends Component {
                                 </div>
                                 : null
                             }
-                            <div className="feature-card-text" style={this.props.featureCard.backImg && this.props.featureCard.backImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{this.props.featureCard.definition}</div></div>
+                            {
+                                this.props.featureCard.definition.length ? 
+                                <div className="feature-card-text" style={this.props.featureCard.backImg && this.props.featureCard.backImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{this.props.featureCard.definition}</div></div>
+                                :
+                                null
+                            }
                         </div>
                     </div>
                     : 

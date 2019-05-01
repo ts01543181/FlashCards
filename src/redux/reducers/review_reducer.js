@@ -2,9 +2,16 @@ import { ADD_REVIEW, DELETE_REVIEW, EDIT_REVIEW } from "../actions/actionTypes";
 
 const deleteReview = (card, reviews) => {
     for (let i = 0; i < reviews.length; i++) {
-        if (reviews[i].term === card.term) {
-            reviews.splice(i, 1);
-            return reviews;
+        if (card.term == "") {
+            if (reviews[i].frontImg == card.frontImg) {
+                reviews.splice(i, 1);
+                return reviews;
+            }
+        } else {
+            if (reviews[i].term === card.term) {
+                reviews.splice(i, 1);
+                return reviews;
+            }
         }
     }
 };

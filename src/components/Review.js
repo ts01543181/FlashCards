@@ -40,16 +40,27 @@ class Review extends Component {
         for (let col of this.props.collection) {
             let flag = false;
             for (let i = 0; i < col.cards.length; i++) {
-                if (col.cards[i].term === this.state.reviewCard.term) {
-                    const edited = {...this.state.reviewCard};
-                    edited.review = false;
-                    this.props.editCard(edited, i);
-                    flag = true;
-                    break;
+                if (col.cards[i].term == "") {
+                    if (col.cards[i].frontImg === this.state.reviewCard.frontImg) {
+                        const edited = {...this.state.reviewCard};
+                        edited.review = false;
+                        this.props.editCard(edited, i);
+                        flag = true;
+                        break;
+                    }
+                } else{
+                    if (col.cards[i].term === this.state.reviewCard.term) {
+                        const edited = {...this.state.reviewCard};
+                        edited.review = false;
+                        this.props.editCard(edited, i);
+                        flag = true;
+                        break;
+                    }
                 }
             }
             if (flag) break;
         }
+        $(".feature-card-inner.flipped").toggleClass("flipped");
         this.props.deleteReview(this.state.reviewCard, this.state.reviewCardId)
         .then(() => {
             if (this.props.review.length === 0) {
@@ -58,7 +69,6 @@ class Review extends Component {
                     reviewCardId: null
                 })
             } else {
-                $(".feature-card-inner.flipped").toggleClass("flipped");
                 if (this.state.reviewCardId === this.props.review.length) {
                     this.setState({
                         reviewCardId: this.state.reviewCardId-1,
@@ -122,17 +132,27 @@ class Review extends Component {
                                 </div>
                                 : null
                             }
-                            <div className="feature-card-text" style={this.state.reviewCard.frontImg && this.state.reviewCard.frontImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{this.state.reviewCard.term}</div></div>
+                            {
+                                this.state.reviewCard.term.length ? 
+                                <div className="feature-card-text" style={this.state.reviewCard.frontImg && this.state.reviewCard.frontImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{this.state.reviewCard.term}</div></div>
+                                :
+                                null
+                            }
                         </div>
                         <div className="feature-card-back">
                             {
                                 this.state.reviewCard.backImg && this.state.reviewCard.backImg.length ? 
-                                <div className="feature-card-img" style={{height:"100%", width:"50%", float:"left"}}>
+                                <div className="feature-card-img" style={{height:"100%", width:`${this.state.reviewCard.definition.length ? "50%" : "100%"}`, float:"left"}}>
                                     <img  src={this.state.reviewCard.backImg} alt="invalid"/>
                                 </div>
                                 : null
                             }
-                            <div className="feature-card-text" style={this.state.reviewCard.backImg && this.state.reviewCard.backImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{this.state.reviewCard.definition}</div></div>
+                            {
+                                this.state.reviewCard.definition.length ? 
+                                <div className="feature-card-text" style={this.state.reviewCard.backImg && this.state.reviewCard.backImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{this.state.reviewCard.definition}</div></div>
+                                :
+                                null
+                            }
                         </div>
                     </div>
                     : 

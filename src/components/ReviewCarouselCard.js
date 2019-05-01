@@ -26,9 +26,10 @@ class ReviewCarouselCard extends Component {
                     this.props.card.frontImg ?
                     <div className="feature-card-img" style={{height:"100%", width:"100%", float:"left"}}>
                         <img src={this.props.card.frontImg} alt="invalid"/>
-                    </div>
+                    </div> 
                     :
                     <div className="carousel-item-text">this card has no term!</div>
+                    
                 }
             </div>
         )
