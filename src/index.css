@@ -455,6 +455,7 @@ i.huge.icon {
   margin-top: 9px;
   margin-left: 11px;
   box-shadow: 0px 2px 5px 0px rgba(138,138,138,1);
+  transition: 0.3s;
 }
 
 .carousel-item:hover {
