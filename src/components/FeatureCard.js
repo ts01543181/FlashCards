@@ -48,6 +48,14 @@ class FeatureCard extends Component {
 
     toggleFlip() {
         $(".feature-card-inner").toggleClass("flipped");
+        if ($(".feature-card-inner").hasClass("flipped")) {
+            setTimeout(() => {
+                $(".feature-card-back").toggleClass("display-none");
+            },0);
+            setTimeout(() => {
+                $(".feature-card-back").toggleClass("display-none");
+            },90);
+        }
         $(".flip-card-inner").toggleClass("flipped");
     }
 
@@ -196,7 +204,11 @@ class FeatureCard extends Component {
                             }
                             {
                                 this.props.featureCard.definition.length ? 
-                                <div className="feature-card-text" style={this.props.featureCard.backImg && this.props.featureCard.backImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}><div>{this.props.featureCard.definition}</div></div>
+                                <div className="feature-card-text" style={this.props.featureCard.backImg && this.props.featureCard.backImg.length ? {height:"100%", width:"50%", float:"right", overflow:"hidden"} : null}>
+                                    <div>
+                                    {this.props.featureCard.definition}
+                                    </div>
+                                </div>
                                 :
                                 null
                             }

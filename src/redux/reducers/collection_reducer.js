@@ -107,11 +107,11 @@ const collectionReducer = (
             backImg: null,
             collection: "Animals",
             comment: "",
-            definition: "elephant",
-            frontImg:"https://www.safaribookings.com/blog/wp-content/uploads/2017/05/What-todo-Encounter-Elephant-BW_1200px.jpg",
+            definition: "dolphin",
+            frontImg:"https://images2.minutemediacdn.com/image/upload/c_crop,h_1778,w_3155,x_0,y_843/f_auto,q_auto,w_1100/v1554928552/shape/mentalfloss/540093-istock-514343279.jpg",
             review:false,
             reviewInd:-1,
-            term:"A huge one with teeth sticking out"
+            term:"A fish-like mammal"
         },
         {
             backImg: null,

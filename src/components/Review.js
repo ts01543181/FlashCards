@@ -26,6 +26,14 @@ class Review extends Component {
 
     toggleFlip() {
         $(".feature-card-inner").toggleClass("flipped");
+        if ($(".feature-card-inner").hasClass("flipped")) {
+            setTimeout(() => {
+                $(".feature-card-back").toggleClass("display-none");
+            },0);
+            setTimeout(() => {
+                $(".feature-card-back").toggleClass("display-none");
+            },100);
+        }
         $(".flip-card-inner").toggleClass("flipped");
     }
 
