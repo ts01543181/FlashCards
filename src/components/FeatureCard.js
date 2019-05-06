@@ -49,12 +49,12 @@ class FeatureCard extends Component {
     toggleFlip() {
         $(".feature-card-inner").toggleClass("flipped");
         if ($(".feature-card-inner").hasClass("flipped")) {
+
+            $(".feature-card-back").toggleClass("display-none");
+            
             setTimeout(() => {
                 $(".feature-card-back").toggleClass("display-none");
             },0);
-            setTimeout(() => {
-                $(".feature-card-back").toggleClass("display-none");
-            },90);
         }
         $(".flip-card-inner").toggleClass("flipped");
     }
