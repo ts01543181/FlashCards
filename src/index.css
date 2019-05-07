@@ -519,6 +519,7 @@ ul {
   font-size: 20px;
   margin:10px;
   overflow: hidden;
+  margin-top:20px;
 }
 
 .result-term {
@@ -527,13 +528,8 @@ ul {
   position: absolute;
   height: 10%;
   overflow: hidden;
-  line-height: 1.5;
 }
 
 .result-container ~ button {
   margin-top: 10%;
-}
-
-.result-container i {
-  margin-top: 2%;
 }

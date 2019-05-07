@@ -146,7 +146,7 @@ class Mock extends Component {
                                                 <div>
                                                     <div>{this.state.answerArr[i] === undefined ? 
                                                     <Icon name="close" color="red"/> : (this.state.answerArr[i] ? <Icon name="checkmark" color="green"/> : 
-                                                    <Icon name="close" color="red"/>)} <div className="result-term">{card.term || "No term for this card"}</div></div>
+                                                    <Icon name="close" color="red"/>)} <div className="result-term">{card.term || "No available term"}</div></div>
                                                 </div>
                                             </li>
                                         )

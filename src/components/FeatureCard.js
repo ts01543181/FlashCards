@@ -46,17 +46,20 @@ class FeatureCard extends Component {
         }
     }
 
-    toggleFlip() {
-        $(".feature-card-inner").toggleClass("flipped");
-        if ($(".feature-card-inner").hasClass("flipped")) {
+    toggleFlip(feature) {
+        if (feature) {
+            $(".feature-card-inner").toggleClass("flipped");
+            if ($(".feature-card-inner").hasClass("flipped")) {
 
-            $(".feature-card-back").toggleClass("display-none");
-            
-            setTimeout(() => {
                 $(".feature-card-back").toggleClass("display-none");
-            },0);
+                
+                setTimeout(() => {
+                    $(".feature-card-back").toggleClass("display-none");
+                },0);
+            }
+        } else {
+            $(".flip-card-inner").toggleClass("flipped");
         }
-        $(".flip-card-inner").toggleClass("flipped");
     }
 
     toggleEditModal() {
@@ -120,7 +123,7 @@ class FeatureCard extends Component {
                 <Modal open={this.state.editModalOpen} closeOnDimmerClick={false}>
                     <Modal.Header>Edit Card</Modal.Header>
                     <div className="flip-card-container">
-                        <div className="flip-card-inner" onClick={this.toggleFlip}>
+                        <div className="flip-card-inner" onClick={() => this.toggleFlip(false)}>
                             <div className="flip-card-front">
                                 {
                                     this.state.frontImg && this.state.frontImg.length ? 
@@ -221,7 +224,7 @@ class FeatureCard extends Component {
                 {
                     this.props.featureCard && this.state.toggle ? 
                     <div className="feature-card-button">
-                        <Popup trigger={<div className="feature-button" onClick={this.toggleFlip}><Icon name="exchange"/></div>}
+                        <Popup trigger={<div className="feature-button" onClick={() => this.toggleFlip(true)}><Icon name="exchange"/></div>}
                             content="Flip"
                             position="right center"
                             size="mini"

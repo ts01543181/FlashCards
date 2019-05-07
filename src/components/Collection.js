@@ -179,14 +179,14 @@ class Collection extends Component {
                 featureCard: this.state.currentCollection.cards[this.state.featureCardId-1],
                 featureCardId: this.state.featureCardId-1
             })
-            $('.carousel-container-inner').animate({ scrollLeft: `-=${width}px` }, "medium");
+            $('.carousel-container-inner').animate({ scrollLeft: `-=${width}px` }, "fast");
         } else {
             $(".feature-card-inner.flipped").toggleClass("flipped");
             this.setState({
                 featureCard: this.state.currentCollection.cards[this.state.featureCardId+1],
                 featureCardId: this.state.featureCardId+1
             })
-            $('.carousel-container-inner').animate({ scrollLeft: `+=${width}px` }, "medium");
+            $('.carousel-container-inner').animate({ scrollLeft: `+=${width}px` }, "fast");
         }
     }
     render() {
