@@ -18,9 +18,9 @@ class ReviewCarouselCard extends Component {
     render() {
         return (
             <div className={`carousel-item${this.props.reviewed ? " featured" : ""}`} onClick={this.onClick}>
-                {/* <div className="carousel-item-text">{this.props.card.term}</div> */}
+                
                 {
-                    this.props.card.term.length ?
+                    this.props.card.term && this.props.card.term.length ?
                     <div className="carousel-item-text">{this.props.card.term}</div>
                     :
                     this.props.card.frontImg ?

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Modal, Dropdown, Form, Icon } from "semantic-ui-react";
 
 const times = [
-    {text:"1 mins", value:1},
     {text:"15 mins", value:15},
     {text:"30 mins", value:30},
     {text:"45 mins", value:45},
@@ -15,7 +14,7 @@ class Mock extends Component {
         super(props);
         this.state = {
             open: false,
-            min: 1,
+            min: 15,
             collection:null,
             result: null,
             start: false,
@@ -185,9 +184,9 @@ class Mock extends Component {
                         </div>
                     </div>
                     
-                    <Form size="large">
+                    <Form size="large" className="answer-container">
                         <Form.Field>
-                            <label>Answer</label>
+                            <h2>Answer</h2>
                             <input value={this.state.answer} onChange={this.onChange} />
                             <span className="focus-border"></span>
                         </Form.Field>
@@ -220,13 +219,16 @@ class Mock extends Component {
                     this.props.collection.length ? 
                     
                     this.props.collection.map(col => {
-                        return (
-                            <div className="collection-item-wrapper" onClick={this.toggleModal} >
-                                <div className="collection-item" data-title={col.title}>
-                                    <div>{col.title}</div>
+                        if (col.cards.length > 0) {
+                            return (
+                                <div className="collection-item-wrapper" onClick={this.toggleModal} >
+                                    <div className="collection-item" data-title={col.title}>
+                                        <div>{col.title}</div>
+                                    </div>
                                 </div>
-                            </div>
-                        )
+                            )
+                        }
+                        return null;
                     }):null
                 }
                 {

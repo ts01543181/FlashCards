@@ -499,6 +499,8 @@ input {
 }
 
 .answer-container {
+  width:60%;
+  margin:0 auto;
   margin-top: 30px;
 }
 
@@ -506,8 +508,8 @@ input {
   margin-top:10px;
 }
 
-.answer-container label {
-  font-size:20px;
+.answer-container h2 {
+  font-size:25px;
   color: #215ca0;
 }
 
@@ -519,7 +521,6 @@ ul {
   font-size: 20px;
   margin:10px;
   overflow: hidden;
-  margin-top:20px;
 }
 
 .result-term {

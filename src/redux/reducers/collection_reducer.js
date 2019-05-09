@@ -101,7 +101,7 @@ const collectionReducer = (
             frontImg:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKYgG50_9Xm8fDoP6o7ThhzJ72KdojpUUJI6_zynG0omch6v7R",
             review:false,
             reviewInd:-1,
-            term:"Big cat with black dots"
+            term:""
         },
         {
             backImg: null,
@@ -111,7 +111,7 @@ const collectionReducer = (
             frontImg:"https://www.safaribookings.com/blog/wp-content/uploads/2017/06/Leopard-BW_1200px.jpg",
             review:false,
             reviewInd:-1,
-            term:"Another big cat with black dots"
+            term:""
         },
         {
             backImg: null,

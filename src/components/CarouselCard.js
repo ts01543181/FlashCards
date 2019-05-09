@@ -19,7 +19,7 @@ class CarouselCard extends Component {
         return (
             <div className={`carousel-item${this.props.featured ? " featured" : ""}`} onClick={this.onClick}>
                 {
-                    this.props.card.term.length ?
+                    this.props.card.term && this.props.card.term.length ?
                     <div className="carousel-item-text">{this.props.card.term}</div>
                     :
                     this.props.card.frontImg ?

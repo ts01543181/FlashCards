@@ -101,14 +101,14 @@ class Review extends Component {
                 reviewCard: this.props.review[this.state.reviewCardId-1],
                 reviewCardId: this.state.reviewCardId-1
             })
-            $('.carousel-container-inner').animate({ scrollLeft: `-=${width}px` }, "medium");
+            $('.carousel-container-inner').animate({ scrollLeft: `-=${width}px` }, "fast");
         } else {
             $(".feature-card-inner.flipped").toggleClass("flipped");
             this.setState({
                 reviewCard: this.props.review[this.state.reviewCardId+1],
                 reviewCardId: this.state.reviewCardId+1
             })
-            $('.carousel-container-inner').animate({ scrollLeft: `+=${width}px` }, "medium");
+            $('.carousel-container-inner').animate({ scrollLeft: `+=${width}px` }, "fast");
         }
     }
     render() {
